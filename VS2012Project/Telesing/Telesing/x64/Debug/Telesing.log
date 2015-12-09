@@ -1,0 +1,21 @@
+﻿生成启动时间为 2015/12/4 17:35:02。
+     1>项目“E:\workspace\GitManager\Telesing\VS2012Project\Telesing\Telesing\Telesing.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\Program Files\VC\bin\x86_amd64\CL.exe /c /IE:\workspace\GitManager\Telesing\VS2012Project\Telesing\Telesing\ /I"Generated Files\\" /Ix64\Debug\ /Zi /nologo /W3 /WX- /sdl /MP /Od /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"pch.h" /Fp"x64\Debug\Telesing.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt pch.cpp
+         pch.cpp
+         E:\Program Files\VC\bin\x86_amd64\CL.exe /c /IE:\workspace\GitManager\Telesing\VS2012Project\Telesing\Telesing\ /I"Generated Files\\" /Ix64\Debug\ /Zi /nologo /W3 /WX- /sdl /MP /Od /D _WINDLL /D _UNICODE /D UNICODE /D _DEBUG /D WINAPI_FAMILY=WINAPI_FAMILY_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"x64\Debug\Telesing.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt dllmain.cpp Telesing.cpp
+         dllmain.cpp
+         Telesing.cpp
+       Link:
+         E:\Program Files\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.dll" /INCREMENTAL /NOLOGO kernel32.lib /MANIFEST:NO /DEBUG /PDB:"E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /APPCONTAINER /WINMD:NO /WINMDFILE:"E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.winmd" /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.lib" /MACHINE:X64 /DLL x64\Debug\dllmain.obj
+         x64\Debug\Telesing.obj
+         x64\Debug\pch.obj
+            正在创建库 E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.lib 和对象 E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.exp
+         Telesing.vcxproj -> E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.dll
+       _GenerateProjectPriFileCore:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x64\MakePri.exe New -ProjectRoot E:\workspace\GitManager\Telesing\VS2012Project\Telesing\Telesing\ -ConfigXml x64\Debug\priconfig.xml -OutputFile E:\workspace\GitManager\Telesing\VS2012Project\Telesing\x64\Debug\Telesing\Telesing.pri -IndexName Telesing -Verbose -Overwrite  
+     1>已完成生成项目“E:\workspace\GitManager\Telesing\VS2012Project\Telesing\Telesing\Telesing.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.62
