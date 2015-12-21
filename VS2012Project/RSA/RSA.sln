@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RSA", "RSA\RSA.vcxproj", "{268C40EA-909C-4610-A77E-5CC56BE30E5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D9FA263-ADD3-46CA-AD80-784D31924ED9}"
+	ProjectSection(SolutionItems) = preProject
+		RSA\big_int.h = RSA\big_int.h
+		RSA\rsa_use.h = RSA\rsa_use.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{268C40EA-909C-4610-A77E-5CC56BE30E5D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{268C40EA-909C-4610-A77E-5CC56BE30E5D}.Debug|Win32.Build.0 = Debug|Win32
+		{268C40EA-909C-4610-A77E-5CC56BE30E5D}.Release|Win32.ActiveCfg = Release|Win32
+		{268C40EA-909C-4610-A77E-5CC56BE30E5D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+﻿生成启动时间为 2015/12/18 11:54:43。
+     1>项目“E:\workspace\GitManager\Telesing\VS2012Project\RSA\RSA\RSA.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\Program Files\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D "_CRT_SECURE_NO_DEPRECATE和_SCL_SECURE_NO_DEPRECATE" /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\RSA.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt rsa_use.cpp
+         rsa_use.cpp
+     1>e:\workspace\gitmanager\telesing\vs2012project\rsa\rsa\rsa_use.cpp(135): warning C4244: “=”: 从“unsigned long”转换到“char”，可能丢失数据
+     1>e:\workspace\gitmanager\telesing\vs2012project\rsa\rsa\rsa_use.cpp(273): warning C4244: “=”: 从“unsigned long”转换到“char”，可能丢失数据
+     1>e:\workspace\gitmanager\telesing\vs2012project\rsa\rsa\rsa_use.cpp(308): warning C4101: “out_str”: 未引用的局部变量
+     1>e:\workspace\gitmanager\telesing\vs2012project\rsa\rsa\rsa_use.cpp(337): warning C4715: “rsa_use::rsa_enc_str”: 不是所有的控件路径都返回值
+       Link:
+         E:\Program Files\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\workspace\GitManager\Telesing\VS2012Project\RSA\Debug\RSA.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\workspace\GitManager\Telesing\VS2012Project\RSA\Debug\RSA.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\workspace\GitManager\Telesing\VS2012Project\RSA\Debug\RSA.lib" /MACHINE:X86 Debug\big_int.obj
+         Debug\RSA.obj
+         Debug\rsa_use.obj
+         Debug\stdafx.obj
+         RSA.vcxproj -> E:\workspace\GitManager\Telesing\VS2012Project\RSA\Debug\RSA.exe
+     1>已完成生成项目“E:\workspace\GitManager\Telesing\VS2012Project\RSA\RSA\RSA.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.30

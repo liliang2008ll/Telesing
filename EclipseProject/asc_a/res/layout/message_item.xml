@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white">
+        <TextView
+                android:id="@+id/sn_txt"
+                style="@style/message_item_text"
+                android:paddingLeft="0dp"
+                android:text="@string/app_name"/>
+        <TextView
+                android:id="@+id/end_time_txt"
+                style="@style/message_item_text"
+                android:text="@string/app_name"/>
+        <TextView
+                android:id="@+id/time_txt"
+                style="@style/message_item_text"
+                android:text="@string/app_name"/>
+        <TextView
+                android:id="@+id/res_txt"
+                style="@style/message_item_text"
+                android:text="@string/app_name"/>
+        <TextView
+                android:id="@+id/msg_res_txt"
+                style="@style/message_item_text"
+                android:text="@string/app_name"/>
+
+</LinearLayout>

@@ -1,0 +1,212 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+>
+
+    <include layout="@layout/nav_layout"/>
+    <LinearLayout android:focusable="true" android:focusableInTouchMode="true" android:layout_height="0dp"
+                  android:layout_width="0dp"></LinearLayout>
+
+    <ScrollView
+            android:layout_below="@id/nav_layout"
+            style="@style/match_parent"
+                android:scrollbars="none"
+                android:fadingEdge="none">
+        <LinearLayout style="@style/w_match_layout"
+                      android:orientation="vertical">
+            <RelativeLayout
+                    style="@style/setting_item_style"
+                    android:visibility="gone"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/fwq_dz_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/fwq_dz_str"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/fwq_dz_edt"
+                        android:inputType="textWebEditText"
+                        android:layout_toRightOf="@id/fwq_dz_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+                    android:visibility="gone"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/by_dz_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/by_fwq_dz_str"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/by_dz_edt"
+                        android:inputType="textWebEditText"
+                        android:layout_toRightOf="@id/by_dz_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/xhcd_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/yb_num"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/fhcd_edt"
+                        android:inputType="number"
+                        android:layout_toRightOf="@id/xhcd_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/xh_qz_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/xh_qz"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/xh_qz_edt"
+                        android:inputType="numberDecimal"
+                        android:layout_toRightOf="@id/xh_qz_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/tb_jg_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/jc_tbjg"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:id="@+id/tb_jg_edt"
+                        android:layout_width="match_parent"
+                        android:layout_toRightOf="@id/tb_jg_txt"
+                        android:inputType="number"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+                    android:visibility="gone"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/jx_cs_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/jx_cs"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/jx_cs_edt"
+                        android:inputType="number"
+                        android:layout_toRightOf="@id/jx_cs_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+                    android:visibility="gone"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/jx_jg_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/jx_jg"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/jx_jg_edt"
+                        android:inputType="number"
+                        android:layout_toRightOf="@id/jx_jg_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/s_feq_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/s_feq"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:id="@+id/s_feq_edt"
+                        android:layout_width="match_parent"
+                        android:layout_toRightOf="@id/s_feq_txt"
+                        android:inputType="numberDecimal"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/e_feq_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/e_feq"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:id="@+id/e_feq_edt"
+                        android:layout_width="match_parent"
+                        android:layout_toRightOf="@id/e_feq_txt"
+                        android:inputType="numberDecimal"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    style="@style/setting_item_style"
+            >
+                <TextView
+                        style="@style/person_item_txt"
+                        android:id="@+id/hc_sj_txt"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/cache_time_str"/>
+                <net.telesing.acs.view.ClearEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/hc_sj_edt"
+                        android:hint="@string/cache_time_hint_str"
+                        android:inputType="numberDecimal"
+                        android:layout_toRightOf="@id/hc_sj_txt"
+                        android:background="@drawable/input_bg"
+                        style="@style/person_item_txt"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
+
+
+
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_top_bottom">#d86472</color>
+    <color name="white">#ffffff</color>
+    <color name="main_bottom">#3e3a39</color>
+    <color name="gray">#575757</color>
+    <color name="about_bg">#efefef</color>
+    <color name="item_txt_color">#3e3e3e</color>
+    <color name="line_divider_sel">#c20d22</color>
+    <color name="txt_open_gj">#ffccbc</color>
+
+    <color name="s_success">#259b24</color>
+    <color name="s_fail">#03a9f4</color>
+    <color name="f_success">#e51c23</color>
+    <color name="f_fail">#ff9800</color>
+</resources>

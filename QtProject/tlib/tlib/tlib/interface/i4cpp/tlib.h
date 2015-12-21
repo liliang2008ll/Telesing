@@ -28,22 +28,21 @@ using namespace std;
 typedef  struct{
 
 //!验证信息字段
-    string section;         //码段
-    string expiration;      //失效日期    YYYY-MM-DD
-    string authority;       //权限       ’1‘生成权限  ’2‘ 识别权限 ’3‘通用 =  生成 + 识别
+    string section;         //码段    4      4字节 "1352"
+    string expiration;      //失效日期 10    YYYY-MM-DD "2015-12-20"  "2012-08-08"
+    string authority;       //权限     1   ’1‘生成权限  ’2‘ 识别权限    ’3‘通用 =  生成 + 识别
 
     //@内部使用,调试接口
     string append_data;     //随机附加数据
 
 //!附加信息字段
-    string id;               //编号       例如”232134234“ 正整数
-    string org_id;           //机构编号    例如”1123123123“ 正整数
-    string sect_src;         //码段来源    例如 ”智声E联“
-    string genr_time;        //生成时间 YYYY-MM-DD hh:mm:ss
-    string genr_type;        //生成方式 '1' 网站获取 ‘2’ 接口获取(API)
+    string id;               //编号      10     例如”12345678“ 正整数
+    string org_id;           //机构编号   10     例如”1123123123“ 正整数
 
-    string genr_ip;          //192.168.1.100
-
+    string genr_time;        //生成时间   19       YYYY-MM-DD hh:mm:ss
+    string genr_type;        //生成方式   1        '1' 网站获取 ‘2’ 接口获取(API)
+    string genr_ip;          //         15      192.168.001.100
+     string sect_src;         //码段来源   64     例如 ”智声E联“
 //!辅助调试信息
 //!
     int cer_length;  //整个字符串长度

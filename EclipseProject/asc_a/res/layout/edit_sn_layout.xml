@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              style="@style/match_parent"
+              android:background="@color/white">
+    <include layout="@layout/nav_layout"/>
+    <View style="@style/w_match_layout"
+          android:layout_height="1px"
+          android:background="@color/gray"/>
+
+        <LinearLayout
+                style="@style/match_parent"
+                android:background="@color/main_bottom"
+                android:layout_height="@dimen/dp_56">
+            <LinearLayout
+                    style="@style/match_parent"
+                    android:padding="@dimen/dp_12"
+                    android:gravity="center"
+                    android:layout_weight="50">
+                <Button
+                        android:id="@+id/clear_btn"
+                        style="@style/match_parent"
+                        android:background="@null"
+                        android:textColor="@color/white"
+                        android:text="@string/clear_str"/>
+            </LinearLayout>
+            <View
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    style="@style/h_match_layout"
+                    android:layout_width="1px"
+                    android:background="@color/gray"/>
+            <LinearLayout
+                    android:padding="@dimen/dp_12"
+                    style="@style/match_parent"
+                    android:gravity="center"
+                    android:layout_weight="50">
+                <Button
+                        android:id="@+id/reload_btn"
+                        style="@style/match_parent"
+                        android:background="@null"
+                        android:textColor="@color/white"
+                        android:text="@string/reload_txt"/>
+            </LinearLayout>
+        </LinearLayout>
+    <LinearLayout style="@style/match_parent"
+                  android:padding="@dimen/dp_12"
+                  android:orientation="horizontal">
+        <EditText
+                android:padding="@dimen/dp_16"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/sn_edt"
+                android:background="@drawable/edit_input_bg"
+                android:textColor="@color/item_txt_color"
+                android:textSize="@dimen/dp_14"
+                android:inputType="textMultiLine"
+                android:gravity="left|top"
+                android:minLines="20"
+                android:maxLines="40"
+        />
+    </LinearLayout>
+</LinearLayout>

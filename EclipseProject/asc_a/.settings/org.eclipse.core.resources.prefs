@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//jni/core/dem.cpp=UTF-8
+encoding//jni/tlib.cpp=GBK
+encoding//src/net/telesing/scomm/android/core/DemI.java=UTF-8
+encoding//src/net/telesing/scomm/android/core/Demodulator.java=UTF-8
