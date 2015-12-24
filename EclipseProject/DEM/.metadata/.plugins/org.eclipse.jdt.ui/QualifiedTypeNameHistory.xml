@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="net.telesing.tsdk.tlib.Recog_cfg"/>
+<fullyQualifiedTypeName name="net.telesing.tsdk.tlib.Recog_status"/>
+<fullyQualifiedTypeName name="java.lang.Character"/>
+<fullyQualifiedTypeName name="android.R.string"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Error"/>
+<fullyQualifiedTypeName name="net.telesing.tsdk.tlib.Acomms"/>
+<fullyQualifiedTypeName name="android.R.integer"/>
+</qualifiedTypeNameHistroy>

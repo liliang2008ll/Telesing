@@ -18,3 +18,7 @@ JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_unbindCer
 	return (p+p);
 }
 
+JNIEXPORT jint  Java_net_telesing_jni_demo_JNIDemo_getWord
+(JNIEnv *env, jobject obj, jstring str, jint p){
+	return 0xffff;
+}

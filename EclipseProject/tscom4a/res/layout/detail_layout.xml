@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              style="@style/match_parent"
+              android:background="@color/white">
+    <include layout="@layout/nav_layout"/>
+    <TextView
+            android:padding="@dimen/dp_12"
+            android:id="@+id/detail_txt"
+            style="@style/match_parent"
+            android:singleLine="false"
+            android:text="@string/error_txt"
+            android:textColor="@color/item_txt_color"/>
+</LinearLayout>

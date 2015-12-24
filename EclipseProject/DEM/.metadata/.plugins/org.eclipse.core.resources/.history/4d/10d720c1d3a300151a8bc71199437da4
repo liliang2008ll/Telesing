@@ -1,0 +1,9 @@
+#include <stdio.h>   // rsa_op.cpp
+#include <string.h>
+#include <openssl/evp.h>
+#include <crypto/evp/evp_locl.h>
+#include <openssl/rand.h>
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
+#include <openssl/err.h>
+#include "rsa.h"

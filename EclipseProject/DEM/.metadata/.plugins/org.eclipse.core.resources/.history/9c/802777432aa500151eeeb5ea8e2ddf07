@@ -1,0 +1,4 @@
+obj/local/armeabi/objs-debug/tlib/.\core\rsa\rsa_key.o: \
+ jni/.\core\rsa\rsa_key.cpp jni/.\core\rsa\rsa_key.H
+
+jni/.\core\rsa\rsa_key.H:

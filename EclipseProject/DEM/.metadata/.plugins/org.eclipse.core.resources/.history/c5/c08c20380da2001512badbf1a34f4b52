@@ -1,0 +1,148 @@
+	/*******************************************************************
+ *  Copyright(c) 2015-2017 Nanjing telesing
+ *  All rights reserved.
+ *
+ *  文件名称: core
+ *  简要描述: acomms 核心算法对interface接口封装类库
+ *
+ *  当前版本:1.1
+ *  作   者:Lee.liang
+ *  日   期:
+ *  说   明:
+ *
+ *  取代版本:1.0
+ *  作   者:
+ *  日   期:
+ *  说   明:
+ ******************************************************************/
+#include <stdio.h>
+#include "core.h"
+#include  "dem.h"
+#include "tlib.h"
+#include "core.h"
+
+//!
+//! \brief CORE::cer_encrypt
+//! \param input_cer
+//! \return
+//!
+char * CORE::cer_encrypt(char *cer)
+{
+
+    return cer;
+}
+//!
+//! \brief CORE::cer_decrypt
+//! \param output_cer
+//! \return
+//!
+char * CORE::cer_decrypt(char *cer)
+{
+ //   return input_cer;
+}
+//!
+//! \brief CORE::cer_bind
+//! \param input_cer
+//! \param input_cer_len
+//! \return Yes or No
+int CORE::cer_bind(char *  input_cer, int input_cer_len)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::cer_unbind
+//! \param input_cer
+//! \param input_cer_len
+//! \return
+//!
+int CORE::cer_unbind(char *  input_cer, int input_cer_len)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::cer_isbind
+//! \param input_cer
+//! \param input_cer_len
+//! \return
+//!
+int CORE::cer_isbind(char *  input_cer, int input_cer_len)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::cer_section_auth
+//! \param input_section
+//! \return
+//!
+int CORE::cer_section_auth(char *  input_section)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::genr_wave
+//! \param input_section
+//! \param input_data
+//! \param out_genr_result
+//! \return
+//!
+short *CORE::genr_wave(char *  input_section, char *  input_data, int out_genr_result)
+{
+
+}
+//!
+//! \brief CORE::recog_stop
+//! \return
+//!
+int CORE::recog_stop()
+{
+    stop();
+}
+//!
+//! \brief CORE::recog_start
+//! \param input_cfg
+//! \return
+//!
+int CORE::recog_start(Recog_cfg input_cfg)
+{
+	start();
+}
+//!
+//! \brief CORE::recog_setconfig
+//! \param input_cfg
+//! \return
+//!
+int CORE::recog_setconfig(Recog_cfg input_cfg)
+{
+
+
+}
+//!
+//! \brief CORE::recog_getconfig
+//! \param input_cfg
+//! \return
+//!
+int CORE::recog_getconfig(Recog_cfg input_cfg)
+{
+ // memcpy((void *)input_cfg,(void *)local_cfg,sizeof(local_cfg));
+  //  local_cfg.input_buffer_len = input_cfg.b
+}
+//!
+//! \brief CORE::recog_write
+//! \param input_data
+//! \param input_data_len
+//! \return
+//!
+int CORE::recog_write(short *input_data, int input_data_len)
+{
+    wirte(input_data,input_data_len);
+}
+//!
+//! \brief CORE::recog_status
+//! \param output_status
+//! \return
+//!
+int CORE::recog_status(Recog_status output_status)
+{
+
+      return 0;
+}

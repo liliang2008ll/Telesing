@@ -119,6 +119,16 @@ JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_getRecogConfig
 JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_getRecogStatus
   (JNIEnv *, jobject);
 
+
+/*
+* Class:     net_telesing_jni_demo_JNIDemo
+* Method:    getWord
+* Signature: ()V
+*/
+JNIEXPORT jint JNICALL Java_net_telesing_jni_demo_JNIDemo_getWord
+(JNIEnv *, jobject);
+
+
 #ifdef __cplusplus
 }
 #endif

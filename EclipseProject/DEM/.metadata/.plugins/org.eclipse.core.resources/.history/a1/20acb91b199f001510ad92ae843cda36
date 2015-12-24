@@ -1,0 +1,24 @@
+package net.telesing.tsdk.tlib;
+
+
+
+public class Acomms {
+ public native int bindCer(String cer,int cerLen);
+ public native int unbindCer(String cer,int cerLen);
+ public native int isBindCer(String cer,int cerLen);
+ public native int getSectionsStatus(String section);
+ public native short[] genrWave(String section,String data);
+ public native int startRecog(Recog_cfg cfg);
+ public native int pauseRecog();
+ public native int restartRecog();
+ public native int stopRecog();
+ public native int writeRecog(short[] waves,int waveLen);
+ public native int setRecogConfig(Recog_cfg cfg);
+ public native Recog_cfg getRecogConfig();
+ public native Recog_status getRecogStatus(); 
+ 
+ public void recogResult(String section,String data,int times){
+	 
+ }
+
+}

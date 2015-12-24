@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//jni/core/core.h=GBK
+encoding//jni/core/dem.cpp=UTF-8
+encoding//jni/tlib.cpp=UTF-8

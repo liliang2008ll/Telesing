@@ -1,0 +1,71 @@
+package net.telesing.scomm.android.core;
+
+import android.util.Log;
+
+/**
+ * Created by FengJZ on 2015/6/8.
+ */
+public class DemI {
+
+	private static final String TAG = "xx";  
+
+	public native  static int     testFun1();
+	public native   int           testFun2(int type);
+	public native  static boolean testFun3(short[] data,int data_size);
+
+
+	//! 初始化.so
+	public native  int init(int n_v, double st_v, int gap_v, double sFeq_v[], double eFeq_v[],int feq_size);
+	//! 开始解调
+	public native static void start();
+	//! 停止解调
+	public native static void stop();
+    //! 获得当前解调状态
+    public native static int getStatus();
+    //! 获取缓冲区大小
+    public native static int getBufferSize();
+    //! 重置缓冲区大小
+    public native static void resizeBuffer(int size);
+    //! 清空缓冲区数据
+    public native static void clearBuffer();
+    //! 向缓冲区写入数据
+    public native static boolean wirte(short[] data,int data_size);
+    //! 缓冲区填充率，0：空；1：满
+    public native static double fillRate();
+    //! 获得当前解析的声码的采样
+    public native static short[] getRegSignal();
+    //! 回调函数 synced
+    private void synced() {
+        Demodulator.successSynced(System.currentTimeMillis());
+        System.out.println("[java] synced");
+        Log.e("================>","synced");
+    }
+
+    //! 回调函数 保留版本
+    private void succRsv(String s) {
+        System.out.println("[java] succRsv " + s);
+        Demodulator.success(s, true, System.currentTimeMillis());
+    }
+
+    //! 回调函数 加密版本
+    private void succEnc(String s) {
+        System.out.println("[java] succEnc " + s);
+        Demodulator.success(s, false, System.currentTimeMillis());
+        Log.e("======succEnc====>", s);
+    }
+
+    //! 回调函数
+    private void failure(int i) {
+        System.out.println("[java] failure");
+        Demodulator.faile(i, System.currentTimeMillis(), getRegSignal());
+        Log.e("=======failure=====>", ""+i);
+    }
+	
+    
+	//加载so
+    static 
+    {  
+        System.loadLibrary("DemI");
+    }
+
+}

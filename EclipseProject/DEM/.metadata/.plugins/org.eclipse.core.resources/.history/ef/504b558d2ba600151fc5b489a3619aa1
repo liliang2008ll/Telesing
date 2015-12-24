@@ -1,0 +1,232 @@
+package net.telesing.tsdk.tlib;
+
+import javax.xml.transform.Templates;
+
+import org.w3c.dom.Text;
+
+import android.R.integer;
+import android.R.string;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import net.telesing.tsdk.tlib.Acomms;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import net.telesing.tsdk.tlib.RecogStatus;
+import net.telesing.tsdk.tlib.RecogCfg;
+import net.telesing.tsdk.tlib.CerInfor;
+
+public class MainActivity extends Activity {
+
+	// !测试用的控件
+	Button start_button, stop_button;
+	TextView log_view;
+	int textcount;
+
+	// 测试用的数据类型
+	String temp = new String();
+	String encodeCer = new String();
+	Acomms acomms = new Acomms();
+	CerInfor cer_temp = new CerInfor();
+	CerInfor get_cer_temp = new CerInfor();
+	RecogCfg rec_cfg = new RecogCfg();
+	RecogCfg rec_set = new RecogCfg();
+	RecogStatus recog_status = new RecogStatus();
+	int  error_ount = 0;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		initButton();
+		initView();
+		showMessageOnTextView("控件初始化完毕.....\n");
+
+		encodeCer = "34373041463138333944323946324331423733364"
+				+ "6344343393934443941363343373045333732303346"
+				+ "3546374245394444453445313131313631413230303"
+				+ "63535333743383534413539343732393833333130343"
+				+ "23038304538304336373633304639373233414634303"
+				+ "3443434314643363037364142384145454534394";
+
+		// !使用
+		rec_cfg.gap = 100;
+		// !初始化
+		// acomms.initRecog();
+		// 开始运行,带参数
+		
+		// 重新设置配置参数
+		 
+
+		// 配置样例证书参数
+		cer_temp.section = "1234";
+		cer_temp.expiration = "2016-12-09";
+		cer_temp.authority = "3";
+
+		cer_temp.genrTime = "2015-12-09 11:11:11";
+		cer_temp.genrType = "1";
+		cer_temp.ID = "0123456789";
+		cer_temp.orgID = "1234567890";
+		cer_temp.genrIp = "192.168.100.100";
+		cer_temp.sectSrc = "1111111122222222333333334444444455555555666666667777777788888888";
+		
+		cer_temp.cerLen = 100;
+		// ************************************************
+
+
+		
+		//测试证书加密
+		temp = acomms.encryptCer(cer_temp);
+		
+		//测试证书绑定
+		error_ount = acomms.bindCer(temp);
+		error_ount = acomms.isBindCer(temp);
+		error_ount = acomms.unbindCer(temp);
+		
+		if(error_ount==0)
+		{
+			Log.e("[APP]:", "证书绑定和解绑定成功");	
+		}
+		error_ount = acomms.isBindCer(temp);
+		if(error_ount!=0)
+		{
+			Log.e("[APP]:", "还没与证书绑定");	
+		}
+		cer_temp = acomms.decryptCer(temp);
+		
+		error_ount = acomms.checkSectionsBindState("1234");
+		
+		Log.e("[APP]:","证书权限 = "+error_ount);
+		// 获取到的加密的证书
+
+		//Log.e("[APP]:", "加密证书内容为" + temp);
+		//
+		 //获取到的证书
+//		 Log.e("[APP]:","ccer_temp.section   = "+cer_temp.section);
+//		 Log.e("[APP]:","ccer_temp.expiration= "+cer_temp.expiration);		 
+//		 Log.e("[APP]:","ccer_temp.authority = "+cer_temp.authority);
+//		 Log.e("[APP]:","ccer_temp.ID        = "+cer_temp.ID);
+//		 Log.e("[APP]:","ccer_temp.orgID     = "+cer_temp.orgID);
+//		 
+//		 Log.e("[APP]:","ccer_temp.genrTime  = "+cer_temp.genrTime);
+//		 Log.e("[APP]:","ccer_temp.genrType  = "+cer_temp.genrType);
+//		 Log.e("[APP]:","ccer_temp.genrIp    = "+cer_temp.genrIp);			 
+//		 Log.e("[APP]:","ccer_temp.sectSrc   = "+cer_temp.sectSrc);
+//
+//		 Log.e("[APP]:","ccer_temp.cerLen    = "+cer_temp.cerLen);
+
+		// //获取到的数据
+		// Log.e("[APP]:","recog_status.ss             = "+recog_status.ss);
+		// Log.e("[APP]:","recog_status.blankBuffer    = "+recog_status.blankBuffer);
+		// Log.e("[APP]:","recog_status.recogStat      = "+recog_status.recogStat);
+		// // Log.e("[APP]:","加密后的字符串"+temp);
+		
+		//测试启动和停止函数
+		// 启动参数配置
+		rec_cfg.bufferLen = 100;
+		rec_cfg.startFeq = new int[] { 1, 2, 3, 4 };
+		rec_cfg.endFeq = new int[] { 4, 3, 2, 1 };
+		// rec_cfg.startFeq[]
+		rec_cfg.fftChains = 3;
+		rec_cfg.fftPoints = 2048;
+		rec_cfg.gap = 215;
+		rec_cfg.st = 0.15;
+		
+		//设置参数配置
+		rec_set.bufferLen = 100;
+		rec_set.startFeq = new int[] { 1, 2, 3, 4 };
+		rec_set.endFeq = new int[] { 4, 3, 2, 1 };
+		// rec_cfg.startFeq[]
+		rec_set.fftChains = 3;
+		rec_set.fftPoints = 2048;
+		rec_set.gap = 215;
+		rec_set.st = 0.15;
+		
+		if(0==acomms.setRecogConfig(rec_cfg)){
+			
+			Log.e("[APP]:","设置解调参数成功....");
+		}
+		
+//		
+//		if(0==acomms.startRecog(rec_cfg))
+//				{
+//			Log.e("[APP]:","第一次启动解调成功....");
+//			
+//			//不带参数启动,没有设置过cfg启动
+//			if(0==acomms.startRecog(null)){
+//				Log.e("[APP]:","不带参数没有设置过cfg启动解调成功....");
+//				}
+//			
+//		}
+		
+		
+		
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	// 按钮控件初始化
+	public void initButton() {
+		start_button = (Button) findViewById(R.id.start);
+		stop_button = (Button) findViewById(R.id.stop);
+		start_button.setOnClickListener(new StartButtonListener());
+		stop_button.setOnClickListener(new stopButtonListener());
+
+	}
+
+	// 日志显示初始化
+	public void initView() {
+		// log_view = (TextView)findViewById(R.id.log);
+
+	}
+
+	// 按钮事件响应
+	// 内部类，实现OnClickListener接口
+	class StartButtonListener implements OnClickListener {
+		public void onClick(View v) {
+			// log_view.setText(acomms.debugMessageOnTextView);
+		}
+
+	}
+
+	// 回掉函数显示调试日志
+	class stopButtonListener implements OnClickListener {
+		public void onClick(View v) {
+
+		}
+
+	}
+
+	// !在指定的控件上显示调试信息
+	public void showMessageOnTextView(String message) {
+		if (20 == textcount) {
+			textcount = 0;
+			log_view.setText("");
+		}
+		++textcount;
+		// log_view.append(acomms.debugMessageOnTextView);
+
+	}
+}

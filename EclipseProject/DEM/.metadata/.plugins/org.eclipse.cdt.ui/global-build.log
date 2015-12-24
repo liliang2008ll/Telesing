@@ -1,0 +1,12 @@
+16:58:39 **** Incremental Build of configuration Default for project tlib ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" 
+[armeabi] Install        : libtlib.so => libs/armeabi/libtlib.so
+16:58:43 **** Incremental Build of configuration Default for project tlib ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" 
+[armeabi] Install        : libtlib.so => libs/armeabi/libtlib.so
+16:59:26 **** Incremental Build of configuration Default for project tlib ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" 
+[armeabi] Install        : libtlib.so => libs/armeabi/libtlib.so
+17:00:11 **** Incremental Build of configuration Default for project tlib ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" 
+[armeabi] Install        : libtlib.so => libs/armeabi/libtlib.so

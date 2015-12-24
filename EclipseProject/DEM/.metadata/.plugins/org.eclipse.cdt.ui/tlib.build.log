@@ -1,0 +1,6 @@
+17:00:11 **** Incremental Build of configuration Default for project tlib ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" 
+[armeabi] Install        : libtlib.so => libs/armeabi/libtlib.so
+
+17:00:11 Build Finished (took 615ms)
+

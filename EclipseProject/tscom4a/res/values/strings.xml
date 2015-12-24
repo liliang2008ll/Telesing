@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">阙音通</string>
+    <string name="start_up_str">开机启动</string>
+    <string name="ball_str">悬浮球开关</string>
+    <string name="switch_str">检测开关</string>
+    <string name="only_window_str">悬浮球仅在桌面显示</string>
+    <string name="unit_str">HZ</string>
+    <string name="minute_str">分钟</string>
+    <string name="no_start">未开启</string>
+    <string name="started">已开启</string>
+    <string name="placeholder_string">%1$s</string>
+    <string name="main_confirm">确定</string>
+    <string name="main_cancel">取消</string>
+    <string name="bq_txt">南京阙音&#160;&#160;版权所有</string>
+    <string name="gs_str">Copyright&#160;&#169;&#160;2015&#160;Telesing&#160;All&#160;Rights&#160;Reserved</string>
+    <string name="version">V</string>
+    <string name="about_item_1">软件介绍</string>
+    <string name="about_item_2">功能介绍</string>
+    <string name="about_item_3">公司介绍</string>
+    <string name="about_item_4">产品介绍</string>
+    <string name="about_item_5">公司官网</string>
+    <string name="about_item_6">公司公众号</string>
+    <string name="about_item_7">公司信箱</string>
+    <string name="about_item_8">软件版本</string>
+    <string name="about_item_9">免责声明</string>
+    <string name="about_item_10">用户协议</string>
+
+    <string name="about_item_1_1">“阙音通”是南京阙音文化传媒有限公司独立开发的智慧声码服务插件，是植入智能手机端的声码接收与解析工具。</string>
+    <string name="about_item_2_1">与合作方的APP配合使用，用于声码信息的接收、解析、测试等工作。</string>
+    <string name="about_item_3_1">南京阙音文化传媒有限公司是一家专注于互动传媒及移动互联网内容制作的高科技公司。</string>
+    <string name="about_item_4_1">公司旗下产品智声E联平台立足音视频创新应用领域，通过声波通信技术为移动互联网提供云端服务及大数据分析,为客户带来新的价值空间和增长点。旨在全新打造“指尖上的娱乐互动城市生活圈”。</string>
+    <string name="about_item_5_1">www.tele-sing.com</string>
+    <string name="about_item_6_1">智声E联   微信号：telesing</string>
+    <string name="about_item_7_1">contact@tele-sing.com</string>
+    <string name="about_item_8_1"></string>
+    <string name="about_item_9_1"></string>
+    <string name="about_item_10_1"></string>
+
+    <string name="start_str">启动</string>
+    <string name="pause_str">暂停</string>
+    <string name="reset_str">复位</string>
+    <string name="reload_txt">重载</string>
+    <string name="clear_str">清空</string>
+    <string name="fwq_dz_str">服务地址</string>
+    <string name="by_fwq_dz_str">备用地址</string>
+    <string name="yb_num">符号长度</string>
+    <string name="sb_ms">快速识别</string>
+    <string name="xh_qz">信号阙值</string>
+    <string name="jx_cs">解析次数</string>
+    <string name="jx_jg">解析间隔</string>
+    <string name="jc_tbjg">同步间隔</string>
+    <string name="s_feq">开始频率</string>
+    <string name="e_feq">结束频率</string>
+    <string name="cache_time_str">缓存时间</string>
+    <string name="cache_time_hint_str">分钟为单位</string>
+    <string name="save_str">保存</string>
+    <string name="open_senior_str">是否打开超级模式</string>
+    <string name="mkf_str">麦克风被占用</string>
+    <string name="detail_str">详情</string>
+    <string name="error_txt">您的麦克风可能已被其他应用占用或者被第三方软件禁用阙音通麦克风权限，请退出占用麦克风程序或者通过第三方软件允许阙音通使用录音权限。然后重启检测开关。</string>
+
+</resources>

@@ -1,0 +1,13 @@
+15:03:46 **** Incremental Build of configuration Default for project MainUI ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" all 
+Android NDK: WARNING: APP_PLATFORM android-19 is larger than android:minSdkVersion 8 in ./AndroidManifest.xml    
+[arm64-v8a] Install        : libtlib.so => libs/arm64-v8a/libtlib.so
+[x86_64] Install        : libtlib.so => libs/x86_64/libtlib.so
+[mips64] Install        : libtlib.so => libs/mips64/libtlib.so
+[armeabi-v7a] Install        : libtlib.so => libs/armeabi-v7a/libtlib.so
+[armeabi] Install        : libtlib.so => libs/armeabi/libtlib.so
+[x86] Install        : libtlib.so => libs/x86/libtlib.so
+[mips] Install        : libtlib.so => libs/mips/libtlib.so
+
+15:03:48 Build Finished (took 2s.442ms)
+

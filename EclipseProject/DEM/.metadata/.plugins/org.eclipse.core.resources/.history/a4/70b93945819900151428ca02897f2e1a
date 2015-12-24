@@ -1,0 +1,194 @@
+
+#include "net_telesing_tsdk_tlib_Acomms.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+JavaVM* globe_JavaVM_;
+jobject globe_JavaObj;
+jclass  globe_JavaClass;
+
+
+
+
+//!测试回调函数的使用
+void ndk_test_call_fnx(){
+
+	JNIEnv* env_;
+	gJavaVM_d->AttachCurrentThread(&env_, NULL);
+	jmethodID mid2 = env_->GetMethodID(gJavaClass_d, "GetNDKDeBugMessage", "(Ljava/lang/String;)S");
+	if(mid2!=0)
+	{
+		env_->CallVoidMethod(gJavaObj_d, mid2,env_->NewStringUTF(data));
+	}
+	gJavaVM_d->DetachCurrentThread();
+
+
+}
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    bindCer
+ * Signature: (Ljava/lang/String;I)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_bindCer
+  (JNIEnv * input_env, jobject input_obj, jstring input_string, jint inpit_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    unbindCer
+ * Signature: (Ljava/lang/String;I)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_unbindCer
+  (JNIEnv * input_env, jobject input_obj, jstring input_string, jint inpit_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    isBindCer
+ * Signature: (Ljava/lang/String;I)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_isBindCer
+  (JNIEnv * input_env, jobject input_obj, jstring input_string, jint inpit_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    getSectionsStatus
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_getSectionsStatus
+  (JNIEnv *input_env, jobject input_obj, jstring input_string){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    genrWave
+ * Signature: (Ljava/lang/String;Ljava/lang/String;)[S
+ */
+JNIEXPORT jshortArray JNICALL Java_net_telesing_tsdk_tlib_Acomms_genrWave
+  (JNIEnv *input_env, jobject input_obj, jstring input_string, jstring input_string){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    startRecog
+ * Signature: (Lnet/telesing/tsdk/tlib/Recog_cfg;)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_startRecog
+  (JNIEnv *input_env, jobject input_obj_Recon_cfg, jobject input_obj_cfg){
+
+	JavaVM* globe_JavaVM_;
+	jobject globe_JavaObj;
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    pauseRecog
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_pauseRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    restartRecog
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_restartRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    stopRecog
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_stopRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+}
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    stopRecog
+ * Signature: ()I
+ */
+//!解调模块初始化
+//!保存当前虚拟机的状态
+//!回调函数
+//!JavaVM* globe_JavaVM_;
+//!jobject globe_JavaObj;
+//!jclass  globe_JavaClass;
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_initRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+
+		input_env->GetJavaVM(&globe_JavaVM_);
+		//@获取全局的obj
+		globe_JavaObj = env->NewGlobalRef(input_obj);
+		//@获取全局的
+		jclass javaClass = env->GetObjectClass(obj);
+		//@获取全局的class
+		globe_JavaClass = (jclass)env->NewGlobalRef(javaClass);
+
+		jdouble *carr1 = env->GetDoubleArrayElements( sFeq_v, NULL);
+		jdouble *carr2 = env->GetDoubleArrayElements( eFeq_v, NULL);
+
+		dem_init(gJavaVM_,gJavaObj_,gJavaClass_,n_v,st_v,gap_v,carr1,carr2,feq_size);
+
+		env->ReleaseDoubleArrayElements(sFeq_v,carr1,0);
+		env->ReleaseDoubleArrayElements(eFeq_v,carr2,0);
+	//	LOGW("[DemI][JNICALL Java_net_telesing_scomm_android_core_DemI_end]");
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    writeRecog
+ * Signature: ([SI)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_writeRecog
+  (JNIEnv *input_env, jobject input_obj, jshortArray input_shortArray, jint input_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    setRecogConfig
+ * Signature: (Lnet/telesing/tsdk/tlib/Recog_cfg;)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_setRecogConfig
+  (JNIEnv *input_env, jobject input_Recong, jobject cfg){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    getRecogConfig
+ * Signature: ()Lnet/telesing/tsdk/tlib/Recog_cfg;
+ */
+JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_getRecogConfig
+  (JNIEnv *input_env, jobject Recog_cfg){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    getRecogStatus
+ * Signature: ()Lnet/telesing/tsdk/tlib/Recog_status;
+ */
+JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_getRecogStatus
+  (JNIEnv *input_env, jobject Recog_status){
+
+}
+
+#ifdef __cplusplus
+}
+#endif

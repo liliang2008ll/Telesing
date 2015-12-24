@@ -1,0 +1,205 @@
+	/*******************************************************************
+ *  Copyright(c) 2015-2017 Nanjing telesing
+ *  All rights reserved.
+ *
+ *  文件名称: core
+ *  简要描述: acomms 核心算法对interface接口封装类库
+ *
+ *  当前版本:1.1
+ *  作   者:Lee.liang
+ *  日   期:
+ *  说   明:
+ *
+ *  取代版本:1.0
+ *  作   者:
+ *  日   期:
+ *  说   明:
+ ******************************************************************/
+#include <stdio.h>
+#include "core.h"
+#include  "dem.h"
+#include "tlib.h"
+#include "core.h"
+
+#include "openssl\rsa.h"
+#include "openssl\err.h"
+#include "openssl\pem.h"
+#include <stdio.h>
+#include <string.h>
+#include "openssl\crypto.h"
+#include "openssl\rand.h"
+#include "openssl\bn.h"
+#include "core\rsa\rsa.h"
+
+//!
+//! \brief CORE::cer_encrypt
+//! \param input_cer
+//! \return
+//!
+char * CORE::cer_encrypt(char *cer)
+{
+
+		//char origin_text[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!";
+
+		// 由于采用RSA_PKCS1_PADDING方式，因此最大长度不要超过（即- 11）
+		int origin_len = sizeof(cer);
+		int enc_len = 0;
+		int dec_len = 0;
+		unsigned char *enc_data = NULL;
+		unsigned char *dec_data = NULL;
+		unsigned char tempdata[255];
+		//开启一个RSA算法
+		rsa_op ro;
+		//设置启动参数
+		ro.set_params();
+
+		//打开配置密钥
+		ro.open_prikey_pubkey();
+		ro.open_pubkey();
+
+		//原始字符串
+		 __android_log_print(ANDROID_LOG_INFO, "NATIVE:",": cer=%s\n", cer);
+
+
+		// 下面两行是私钥加密，公钥解密
+		ro.prikey_encrypt((const unsigned char *)cer, origin_len, (unsigned char **)&enc_data, enc_len);
+
+
+		//加密后的文件
+		__android_log_print(ANDROID_LOG_INFO, "NATIVE:",":AAAAAAencrypt=%s\n", enc_data);
+		__android_log_print(ANDROID_LOG_INFO, "NATIVE:",":AAAAAAlengtht=%d\n", sizeof(enc_data));
+		//
+		ro.pubkey_decrypt(enc_data, enc_len, (unsigned char **)&dec_data, dec_len);
+		memcpy(tempdata,dec_data,255);
+
+			__android_log_print(ANDROID_LOG_INFO, "NATIVE:",":BBBBBBdec_data=%c\n", (unsigned char **)&dec_data);
+
+
+		// 下面两行是公钥加密，私钥解密
+		//ro.pubkey_encrypt((const unsigned char *)origin_text, origin_len, (unsigned char **)&enc_data, enc_len);
+		//ro.prikey_decrypt(enc_data, enc_len, (unsigned char **)&dec_data, dec_len);
+
+		delete []enc_data;
+		delete []dec_data;
+
+	    return 0;
+
+
+  //  return cer;
+}
+//!
+//! \brief CORE::cer_decrypt
+//! \param output_cer
+//! \return
+//!
+char * CORE::cer_decrypt( char *cer)
+{
+	return cer;
+}
+//!
+//! \brief CORE::cer_bind
+//! \param input_cer
+//! \param input_cer_len
+//! \return Yes or No
+int CORE::cer_bind(char *  input_cer, int input_cer_len)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::cer_unbind
+//! \param input_cer
+//! \param input_cer_len
+//! \return
+//!
+int CORE::cer_unbind(char *  input_cer, int input_cer_len)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::cer_isbind
+//! \param input_cer
+//! \param input_cer_len
+//! \return
+//!
+int CORE::cer_isbind(char *  input_cer, int input_cer_len)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::cer_section_auth
+//! \param input_section
+//! \return
+//!
+int CORE::cer_section_auth(char *  input_section)
+{
+    return SUCCEED;
+}
+//!
+//! \brief CORE::genr_wave
+//! \param input_section
+//! \param input_data
+//! \param out_genr_result
+//! \return
+//!
+short *CORE::genr_wave(char *  input_section, char *  input_data, int out_genr_result)
+{
+
+}
+//!
+//! \brief CORE::recog_stop
+//! \return
+//!
+int CORE::recog_stop()
+{
+    stop();
+}
+//!
+//! \brief CORE::recog_start
+//! \param input_cfg
+//! \return
+//!
+int CORE::recog_start(Recog_cfg input_cfg)
+{
+	start();
+}
+//!
+//! \brief CORE::recog_setconfig
+//! \param input_cfg
+//! \return
+//!
+int CORE::recog_setconfig(Recog_cfg input_cfg)
+{
+
+
+}
+//!
+//! \brief CORE::recog_getconfig
+//! \param input_cfg
+//! \return
+//!
+int CORE::recog_getconfig(Recog_cfg input_cfg)
+{
+ // memcpy((void *)input_cfg,(void *)local_cfg,sizeof(local_cfg));
+  //  local_cfg.input_buffer_len = input_cfg.b
+}
+//!
+//! \brief CORE::recog_write
+//! \param input_data
+//! \param input_data_len
+//! \return
+//!
+int CORE::recog_write(short *input_data, int input_data_len)
+{
+    wirte(input_data,input_data_len);
+}
+//!
+//! \brief CORE::recog_status
+//! \param output_status
+//! \return
+//!
+int CORE::recog_status(Recog_status output_status)
+{
+
+      return 0;
+}
+

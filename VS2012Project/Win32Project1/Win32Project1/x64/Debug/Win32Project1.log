@@ -1,0 +1,20 @@
+﻿生成启动时间为 2015/12/23 17:08:56。
+     1>项目“E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\Win32Project1\Win32Project1.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\Program Files\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D WIN32PROJECT1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Debug\Win32Project1.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         E:\Program Files\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D WIN32PROJECT1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt dllmain.cpp
+         dllmain.cpp
+         E:\Program Files\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D WIN32PROJECT1_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Debug\Win32Project1.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Win32Project1.cpp
+         Win32Project1.cpp
+       Link:
+         E:\Program Files\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\x64\Debug\Win32Project1.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\x64\Debug\Win32Project1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\x64\Debug\Win32Project1.lib" /MACHINE:X64 /DLL x64\Debug\dllmain.obj
+         x64\Debug\stdafx.obj
+         x64\Debug\Win32Project1.obj
+            正在创建库 E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\x64\Debug\Win32Project1.lib 和对象 E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\x64\Debug\Win32Project1.exp
+         Win32Project1.vcxproj -> E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\x64\Debug\Win32Project1.dll
+     1>已完成生成项目“E:\workspace\GitManager\Telesing\VS2012Project\Win32Project1\Win32Project1\Win32Project1.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.46

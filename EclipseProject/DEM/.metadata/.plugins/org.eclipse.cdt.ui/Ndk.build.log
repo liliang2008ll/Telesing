@@ -1,0 +1,12 @@
+16:02:08 **** Incremental Build of configuration Default for project Ndk ****
+"E:\\ndk\\android-ndk-r10\\ndk-build.cmd" all 
+[arm64-v8a] Install        : libDemI.so => libs/arm64-v8a/libDemI.so
+[x86_64] Install        : libDemI.so => libs/x86_64/libDemI.so
+[mips64] Install        : libDemI.so => libs/mips64/libDemI.so
+[armeabi-v7a] Install        : libDemI.so => libs/armeabi-v7a/libDemI.so
+[armeabi] Install        : libDemI.so => libs/armeabi/libDemI.so
+[x86] Install        : libDemI.so => libs/x86/libDemI.so
+[mips] Install        : libDemI.so => libs/mips/libDemI.so
+
+16:02:09 Build Finished (took 1s.388ms)
+

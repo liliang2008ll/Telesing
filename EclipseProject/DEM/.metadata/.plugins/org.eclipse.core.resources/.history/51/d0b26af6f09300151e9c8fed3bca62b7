@@ -1,0 +1,557 @@
+package net.telesing.scomm.android.core;
+
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaRecorder;
+import android.util.Log;
+import com.google.gson.Gson;
+import net.telesing.acs.bean.SectionBean;
+import net.telesing.acs.db.DBHelper;
+import net.telesing.acs.db.DBUtil;
+import net.telesing.scomm.android.Cookie;
+import net.telesing.scomm.android.DemInterface;
+import net.telesing.scomm.android.MsgSn;
+import net.telesing.scomm.android.SvecResBean;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+
+
+public class Demodulator {
+
+    private static final int SLEEP_MS = 100;
+
+    private static final int AUDIO_SOURCE = MediaRecorder.AudioSource.MIC;
+    private static final int SAMPLE_RATE_IN_HZ = 44100;
+    private static final int CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
+    private static final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
+    private static final int MIN_BUFFER_SIZE = AudioRecord.getMinBufferSize(
+            SAMPLE_RATE_IN_HZ,
+            CHANNEL_CONFIG,
+            AUDIO_FORMAT
+    );
+
+    private static int state = DemInterface.CLOSED;
+
+    private static int audio_state = DemInterface.INITIALLING_FAILE;
+
+    private static boolean isIC = true;
+
+    public static int state() {
+        if(state != DemInterface.RUNNING){
+            return state;
+        }else {
+            return audio_state;
+        }
+    }
+
+    private static Thread op = null;
+
+    private static short[] readBuffer = null;
+    private static DemI dem = null;
+    private static AudioRecord audioRecord = null;
+
+    private static Map<String, Long> snCache = null;
+    private static Map<String, SvecResBean> snBuffer = null;
+    private static DemingThread demingThread = null;
+    private static ClearThread clearThread = null;
+//    private static MappingThread mappingThread = null;
+
+    private static SvecResBean svecResBean;//声码解析结果类
+    private static boolean isCache = true;//声码是否需要存入缓存
+
+    static class DemingThread extends Thread {
+        @Override
+        public void run() {
+            while (state == DemInterface.RUNNING) {
+                int size = audioRecord.read(readBuffer, 0, readBuffer.length);
+             //   Log.e("dem write size is :",String.valueOf(size));
+                if (AudioRecord.ERROR_INVALID_OPERATION != size) {
+                    audio_state = DemInterface.RUNNING;
+                    short[] datas = new short[size];
+                    System.arraycopy(readBuffer, 0, datas, 0, size);
+                    dem.wirte(datas, size);
+                }else {
+                	 Log.e("dem write size is :",String.valueOf(size));
+                    audio_state = DemInterface.INITIALLING_FAILE;
+                }
+            }
+        }
+    }
+
+    static class ClearThread extends Thread {
+        @Override
+        public void run() {
+            while (state == DemInterface.RUNNING) {
+                if (snCache.size() > 0) {
+                    long currentTime = System.currentTimeMillis();
+                    Set<Map.Entry<String, Long>> entrySet = snCache.entrySet();
+                    Iterator<Map.Entry<String, Long>> it = entrySet.iterator();
+                    while (it.hasNext()) {
+                        Map.Entry<String, Long> e = it.next();
+                        if (e.getValue() <= currentTime) {
+                            it.remove();
+                        }
+                    }
+                } else {
+                    try {
+                        sleep(SLEEP_MS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+
+    static class MappingThread extends Thread {
+        @Override
+        public void run() {
+            while (state == DemInterface.RUNNING) {
+                if (snBuffer.size() > 0 && isIC) {
+                    Set<String> keySet = snBuffer.keySet();
+                    List<String> snList = null;
+                    for (String key : keySet) {
+                        MsgSn msgSn = new MsgSn();
+                        snList = new ArrayList<String>();
+                        snList.clear();
+                        snList.add(key);
+                        msgSn.setBeginTime(System.currentTimeMillis());
+                        Log.e("entire", new Gson().toJson(snList));
+                        String entire = Mapper.mapping(snList, cookie);
+                        msgSn.setEndTime(System.currentTimeMillis());
+                        if (entire != null) {
+                            Log.e("entire", entire);
+                            msgSn.setSn(key);
+                            msgSn.setMsg(entire);
+                            SvecResBean svec = snBuffer.get(key);
+                            svec.setMsgSn(msgSn);
+                            Intent intent = new Intent(DemInterface.HAVE_MSGS_INTENT);
+                            intent.putExtra(DemInterface.HAVE_MSGS_STRING, msgSn);
+                            intent.putExtra("svec_bean", svec);
+                            context.sendBroadcast(intent);
+                            snBuffer.remove(key);
+                        }
+                    }
+
+//                    String entire = Mapper.mapping(snList);
+//                    if (entire != null) {
+//                        List<Msg> entireList = DemImplement.parseMsgs(entire);
+//                        if (entireList.size() > 0) {
+//                            List<Msg> validList = new ArrayList<Msg>();
+//                            for (Msg m : entireList) {
+//                                if (m.getM_id() != null && m.getC_id() != null && m.getM_remind_interval() != null) {
+//                                    validList.add(m);
+//                                }
+//                                snBuffer.remove(m.getSn());
+//                            }
+//                            if (validList.size() > 0) {
+//                                Intent intent = new Intent(DemInterface.HAVE_MSGS_INTENT);
+//                                intent.putExtra(DemInterface.HAVE_MSGS_STRING, new Gson().toJson(validList));
+//                                context.sendBroadcast(intent);
+//                            }
+//                        }
+//                    }
+                } else {
+                    try {
+                        sleep(SLEEP_MS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    private static Context context;
+    private static Cookie cookie;
+    private static SQLiteDatabase sdb;
+    private static DBHelper dbHelper;
+
+    public static void setDBHelper(DBHelper dbHelper) {
+        Demodulator.dbHelper = dbHelper;
+
+    }
+    public static void setContext(Context context) {
+        Demodulator.context = context;
+
+    }
+
+    public static void setSQLiteDatabase(SQLiteDatabase sdb) {
+        Demodulator.sdb = sdb;
+
+    }
+
+    public static void setCookie(Cookie cookie) {
+        Demodulator.cookie = cookie;
+    }
+
+    public static boolean close() {
+
+        switch (state) {
+            case DemInterface.CLOSED:
+                return true;
+            case DemInterface.INITIALLING:
+                return suspendInitialing();
+            case DemInterface.RELEASING:
+                return true;
+            case DemInterface.OPENED:
+                return release();
+            case DemInterface.STARTING:
+                return suspendStarting_release();
+            case DemInterface.STOPPING:
+                return awaitStopping_release();
+            case DemInterface.RUNNING:
+                return stop_release();
+            default:
+                return false;
+        }
+    }
+
+
+    public static boolean open() {
+        switch (state) {
+            case DemInterface.CLOSED:
+                return initial();
+            case DemInterface.INITIALLING:
+                return true;
+            case DemInterface.RELEASING:
+                return suspendReleasing();
+            case DemInterface.OPENED:
+                return true;
+            case DemInterface.STARTING:
+                return suspendStarting();
+            case DemInterface.STOPPING:
+                return true;
+            case DemInterface.RUNNING:
+                return stop();
+            default:
+                return false;
+        }
+    }
+
+
+    public static boolean run() {
+        switch (state) {
+            case DemInterface.CLOSED:
+                return initial_start();
+            case DemInterface.INITIALLING:
+                return awaitInitialling_start();
+            case DemInterface.RELEASING:
+                return suspendReleasing_start();
+            case DemInterface.OPENED:
+                return start();
+            case DemInterface.STARTING:
+                return true;
+            case DemInterface.STOPPING:
+                return suspendStopping();
+            case DemInterface.RUNNING:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private static boolean initial() {
+        state = DemInterface.INITIALLING;
+
+        op = new Thread() {
+            public void run() {
+                while (state == DemInterface.INITIALLING) {
+                    try {
+                        readBuffer = new short[MIN_BUFFER_SIZE];
+                        snCache = new ConcurrentHashMap<String, Long>();
+                        dem = new DemI();
+                        dem.init(cookie.getNumInteger(Cookie.DEM_N), cookie.getStDouble(Cookie.DEM_ST), cookie.getGapInteger(Cookie.DEM_GAP),cookie.getfeq(Cookie.DEM_SFEQ, 16),cookie.getfeq(Cookie.DEM_EFEQ,20) ,1);
+//                        dem.init(cookie.getNumInteger(Cookie.DEM_N), cookie.getStDouble(Cookie.DEM_ST), cookie.getGapInteger(Cookie.DEM_GAP),cookie.getfeq(Cookie.DEM_SFEQ, 16),cookie.getfeq(Cookie.DEM_EFEQ,20) Config.DEM_SFEQ, Config.DEM_EFEQ, Config.DEM_FEQ_SIZE);
+                        audioRecord = new AudioRecord(
+                                AUDIO_SOURCE,
+                                SAMPLE_RATE_IN_HZ,
+                                CHANNEL_CONFIG,
+                                AUDIO_FORMAT,
+                                MIN_BUFFER_SIZE
+                        );
+                        audioRecord.startRecording();
+                        state = DemInterface.OPENED;
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                        state = DemInterface.INITIALLING_FAILE;
+                        Log.e("IllegalArgument","IllegalArgumentException");
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                        Log.e("IllegalStateException", "IllegalStateException");
+                        state = DemInterface.INITIALLING_FAILE;
+                    }
+                }
+            }
+        };
+        op.start();
+
+        return true;
+    }
+
+    private static boolean start() {
+        state = DemInterface.STARTING;
+
+        op = new Thread() {
+            public void run() {
+                while (state == DemInterface.STARTING) {
+                    try {
+//                        dem.resizeBuffer(Config.DEM_BUFFER_SIZE);
+                        dem.start();
+                        audioRecord.startRecording();
+                        snCache = new ConcurrentHashMap<String, Long>();
+                        snBuffer = new ConcurrentHashMap<String, SvecResBean>();
+                        demingThread = new DemingThread();
+                        clearThread = new ClearThread();
+//                        mappingThread = new MappingThread();
+                        state = DemInterface.RUNNING;
+                        demingThread.start();
+                        clearThread.start();
+//                        mappingThread.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        op.start();
+
+        return true;
+    }
+
+    private static boolean stop() {
+        state = DemInterface.STOPPING;
+
+        op = new Thread() {
+            public void run() {
+                while (state == DemInterface.STOPPING) {
+                    try {
+                        audioRecord.stop();
+                        dem.stop();
+//                        if (mappingThread != null) {
+//                            mappingThread.join();
+//                            mappingThread = null;
+//                        }
+                        if (clearThread != null) {
+                            clearThread.join();
+                            clearThread = null;
+                        }
+                        if (demingThread != null) {
+                            demingThread.join();
+                            demingThread = null;
+                        }
+                        if (snBuffer != null) {
+                            snBuffer = null;
+                        }
+                        if (snCache != null) {
+                            snCache = null;
+                        }
+                        state = DemInterface.OPENED;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        op.start();
+
+        return true;
+    }
+
+    private static boolean release() {
+        state = DemInterface.RELEASING;
+
+        op = new Thread() {
+            public void run() {
+                while (state == DemInterface.RELEASING) {
+                    try {
+                        if (readBuffer != null) {
+                            readBuffer = null;
+                        }
+                        if (snCache != null) {
+                            snCache = null;
+                        }
+                        if (dem != null) {
+                            dem = null;
+                        }
+                        if (audioRecord != null) {
+                            audioRecord.release();
+                            audioRecord = null;
+                        }
+                        state = DemInterface.CLOSED;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        op.start();
+
+        return true;
+    }
+
+    private static void join() {
+        if (op != null) {
+            boolean joined = false;
+            while (!joined) {
+                try {
+                    op.join();
+                    joined = true;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static boolean suspendInitialing() {
+        state = DemInterface.RELEASING;
+        join();
+        return release();
+    }
+
+    private static boolean suspendStarting_release() {
+        state = DemInterface.STOPPING;
+        join();
+        stop();
+
+        join();
+        return release();
+    }
+
+
+    private static boolean awaitStopping_release() {
+        join();
+
+        return release();
+    }
+
+    private static boolean stop_release() {
+        stop();
+
+        join();
+        return release();
+    }
+
+    private static boolean suspendReleasing() {
+        state = DemInterface.INITIALLING;
+        join();
+        return initial();
+    }
+
+    private static boolean suspendStarting() {
+        state = DemInterface.STOPPING;
+        join();
+        return stop();
+    }
+
+    private static boolean initial_start() {
+        initial();
+
+        join();
+        return start();
+    }
+
+    private static boolean awaitInitialling_start() {
+        join();
+
+        return start();
+    }
+
+    private static boolean suspendReleasing_start() {
+        state = DemInterface.INITIALLING;
+        join();
+        initial();
+
+        join();
+        return start();
+    }
+
+    private static boolean suspendStopping() {
+        state = DemInterface.STARTING;
+        join();
+        return start();
+    }
+
+    public static void successSynced(long time) {
+        if (state == DemInterface.RUNNING) {
+            svecResBean = new SvecResBean();
+            svecResBean.setStartTime(time);
+        }
+    }
+
+    public static void faile(int i, long time, short[] regSignal) {
+        svecResBean.setBeaconSn(String.valueOf(i));
+        svecResBean.setEndTime(time);
+        svecResBean.setGood(false);
+        svecResBean.setRegSignal(regSignal);
+        Intent intent = new Intent(DemInterface.HAVE_SN_INTENT);
+        svecResBean.setHave(false);
+        intent.putExtra("svec_bean", new Gson().toJson(svecResBean));
+        intent.putExtra(DemInterface.HAVE_SN_STRING, String.valueOf(i));
+        context.sendBroadcast(intent);
+    }
+
+    public static void success(String data, boolean isReserve, long time) {
+        if (state == DemInterface.RUNNING) {
+            svecResBean.setEndTime(time);
+            svecResBean.setGood(true);
+            Long have = snCache.get(data);
+            svecResBean.setBeaconSn(data);
+            Intent intent = new Intent(DemInterface.HAVE_SN_INTENT);
+
+            if (have == null) {
+                snCache.put(data, time + cookie.getCacheTime(Cookie.CACHE_CLEAR_MS));
+                if (isReserve) {
+//                    intent.putExtra(DemInterface.HAVE_SN_STRING, data);
+                } else {
+                    snBuffer.put(data, svecResBean);
+                }
+                svecResBean.setHave(false);
+                intent.putExtra(DemInterface.HAVE_SN_STRING, data);
+                intent.putExtra("svec_bean", new Gson().toJson(svecResBean));
+            } else {//高级测试使用
+                svecResBean.setHave(true);
+                intent.putExtra("svec_bean", new Gson().toJson(svecResBean));
+            }
+            sendBroadCast(intent,data,context);
+
+        }
+    }
+
+    public static void sendBroadCast(Intent intent,String data,Context context){
+        List<SectionBean> packages = DBUtil.findPackages(data, sdb, dbHelper);
+        if(packages != null && packages.size() > 0){
+            for (SectionBean sectionBean : packages){
+                intent.setPackage(sectionBean.getPackageName());
+                context.sendBroadcast(intent);
+
+                intent.putExtra("org_name",sectionBean.getOrgName());
+                intent.setPackage("net.telesing.acs");
+                context.sendBroadcast(intent);
+            }
+        }else {
+            intent.putExtra("org_name","未知机构");
+            intent.setPackage("net.telesing.acs");
+            context.sendBroadcast(intent);
+        }
+    }
+
+    public static double getSignal(){
+        return new Random().nextFloat();
+    }
+
+
+    public static Long getSnTime(String data){
+        return snCache.get(data);
+    }
+
+
+}

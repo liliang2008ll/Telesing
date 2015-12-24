@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tscom4a.iml" filepath="$PROJECT_DIR$/tscom4a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tsdk4a/2-程序编码/源代码/tsdk4a/tsdk4a.iml" filepath="$PROJECT_DIR$/../../tsdk4a/2-程序编码/源代码/tsdk4a/tsdk4a.iml" />
+    </modules>
+  </component>
+</project>

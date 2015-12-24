@@ -1,0 +1,451 @@
+#include <stdio.h>
+#include <string.h>
+#include <jni.h>
+#include <assert.h>
+#include "net_telesing_tsdk_tlib_Acomms.h"
+#include "tlib.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <android/log.h>
+
+#define INFOR(a)   __android_log_print(ANDROID_LOG_INFO, "NATIVE:",a);
+
+
+//用于保存虚拟机的各个参数
+JavaVM* globe_JavaVM     ; //java虚拟机
+jobject globe_JavaObj    ;
+jclass  globe_JavaClass  ;
+
+CER cer_infor;
+Recog_status recog_status;
+
+
+
+
+
+void ndk_test_call_fnx(char *debug_message){
+
+	//@新建字符串用于测试
+	JNIEnv* env_;
+	char str1[] = "test1,start....";
+	char str2[] = "test2,start....";
+
+	globe_JavaVM->AttachCurrentThread(&env_, NULL);
+	//找到指定的函数名
+	jmethodID mid = env_->GetMethodID(globe_JavaClass, "recogResult", "(Ljava/lang/String;Ljava/lang/String;I)V");
+	//调用返回值为void的方法
+	env_->CallVoidMethod(globe_JavaObj, mid,env_->NewStringUTF(str1),env_->NewStringUTF(str2),100);
+
+	//状态赋值
+	recog_status.output_recog_state  = 100;
+	recog_status.output_blank_buffer = 0.2;
+	recog_status.output_ss           =0.99;
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    encryptCer
+ * Signature: (Lnet/telesing/tsdk/tlib/Cer_Infor;I)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_net_telesing_tsdk_tlib_Acomms_encryptCer
+  (JNIEnv *env , jobject object1 , jobject object2, jint length){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    DecryptCer
+ * Signature: (Ljava/lang/String;I)Lnet/telesing/tsdk/tlib/Cer_Infor;
+ */
+JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_DecryptCer
+  (JNIEnv *, jobject, jstring, jint){
+
+}
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    bindCer
+ * Signature: (Ljava/lang/String;I)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_bindCer
+  (JNIEnv * input_env, jobject input_obj, jobject cer_infor, jint inpit_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    unbindCer
+ * Signature: (Ljava/lang/String;I)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_unbindCer
+  (JNIEnv * input_env, jobject input_obj, jobject cer_infor,jint cer_length)
+{
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    isBindCer
+ * Signature: (Ljava/lang/String;I)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_isBindCer
+  (JNIEnv * input_env, jobject input_obj, jobject cer_infor, jint inpit_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    getSectionsStatus
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_getSectionsStatus
+  (JNIEnv *input_env, jobject input_obj,jobject cer_infor){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    genrWave
+ * Signature: (Ljava/lang/String;Ljava/lang/String;)[S
+ */
+JNIEXPORT jshortArray JNICALL Java_net_telesing_tsdk_tlib_Acomms_genrWave
+  (JNIEnv *input_env, jobject input_obj, jstring input_string_section, jstring input_string_data){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    startRecog
+ * Signature: (Lnet/telesing/tsdk/tlib/Recog_cfg;)I
+ */
+//(Recog_cfg cfg)
+//调试
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_startRecog
+  (JNIEnv *input_env, jobject input_obj, jobject recog_cfg){
+
+	__android_log_print(ANDROID_LOG_INFO, "NDK:","START RECONG");
+
+	//获取Java中的实例类
+	jclass objectClass = input_env->FindClass("net/telesing/tsdk/tlib/Recog_cfg");
+
+
+	//获取类中每一个变量的定义
+	jfieldID  jgap      = input_env->GetFieldID(objectClass, "gap", "I");
+	jfieldID  jpoints   = input_env->GetFieldID(objectClass, "fft_points", "I");
+
+	//改变结构体变量中的数值
+	//input_env->SetIntField(recog_cfg,fft_gap,100);
+	//获取结构体变量中int类型的变量值
+	jint  temp_gap = input_env->GetIntField(recog_cfg,jgap);
+
+
+	__android_log_print(ANDROID_LOG_INFO, "NDK:","gap = : %d", temp_gap);
+
+/*
+ *  public double[] start_feq;	//启始频率
+	public double[] end_feq;	//截止频率
+	public int 		gap   ;		//跳转间隙
+	public double 	st ;		//相似度
+	public int 		fft_points; //FFT点数
+	public int 		fft_chains;	//FFT信道数
+	public int 		fft_gap;	//同步失败后跳转间隙
+	*/
+
+	//给每一个实例的变量付值
+//	(e)->SetIntField(o, nHeight, 10);
+//	(e)->SetIntField(o, nWidth, 100);
+//	(e)->SetObjectField(o, strStream, (e)->NewStringUTF("my stream"));
+
+	return 0;
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    pauseRecog
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_pauseRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    restartRecog
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_restartRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    stopRecog
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_stopRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+}
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    stopRecog
+ * Signature: ()I
+ */
+//!解调模块初始化
+//!保存当前虚拟机的状态
+//!回调函数
+//!JavaVM* globe_JavaVM;
+//!jobject globe_JavaObj;
+//!jclass  globe_JavaClass;
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_initRecog
+  (JNIEnv *input_env, jobject input_obj){
+
+		//@获取虚拟机
+		input_env->GetJavaVM(&globe_JavaVM);
+
+		//@虚拟机转为全局引用
+		globe_JavaObj = input_env->NewGlobalRef(input_obj);
+
+		//@获取对象
+		jclass javaClass = input_env->GetObjectClass(input_obj);
+
+		//@对象转为全局引用
+		globe_JavaClass = (jclass)input_env->NewGlobalRef(javaClass);
+
+		ndk_test_call_fnx("test");
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    writeRecog
+ * Signature: ([SI)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_writeRecog
+  (JNIEnv *input_env, jobject input_obj, jshortArray input_shortArray, jint input_int){
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    setRecogConfig
+ * Signature: (Lnet/telesing/tsdk/tlib/Recog_cfg;)I
+ */
+JNIEXPORT jint JNICALL Java_net_telesing_tsdk_tlib_Acomms_setRecogConfig
+  (JNIEnv *input_env, jobject jobj, jobject recog_cfg){
+
+
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    getRecogConfig
+ * Signature: ()Lnet/telesing/tsdk/tlib/Recog_cfg;
+ */
+
+
+JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_getRecogConfig
+  (JNIEnv *input_env, jobject recog_cfg){
+
+
+}
+
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    getRecogStatus
+ * Signature: ()Lnet/telesing/tsdk/tlib/Recog_status;
+ */
+JNIEXPORT jobject JNICALL Java_net_telesing_tsdk_tlib_Acomms_getRecogStatus
+  (JNIEnv *input_env, jobject obj)
+{
+	//获取JAVA中的实例类
+	 jclass objectClass = (input_env)->FindClass("net/telesing/tsdk/tlib/Recog_status");
+
+	 //获取类中每一个变量的定义
+	jfieldID j_ss			 = input_env->GetFieldID(objectClass, "ss", "D");
+	jfieldID j_blank_buffer  = input_env->GetFieldID(objectClass, "blankBuffer", "D");
+	jfieldID j_recog_stat    = input_env->GetFieldID(objectClass, "recogStat", "I");
+
+	//修改状态值准备JAVA获取
+	//状态赋值
+	recog_status.output_recog_state  = 100;
+	recog_status.output_blank_buffer = 0.2;
+	recog_status.output_ss           = 0.99;
+
+	//新建一个对象用于返回到Java中
+	jobject status = input_env->AllocObject(objectClass);
+
+	//给每一个实例的变量
+	input_env -> SetDoubleField(status, j_ss,recog_status.output_ss  );
+	input_env -> SetDoubleField(status, j_blank_buffer,recog_status.output_blank_buffer);
+	input_env -> SetIntField(status, j_recog_stat,recog_status.output_recog_state );
+
+	return status;
+}
+/*
+ * Class:     net_telesing_tsdk_tlib_Acomms
+ * Method:    encryptCer
+ * Signature: (Ljava/lang/String;I)Ljava/lang/String;
+ */
+//@获取结构体的参数,并且显示出来
+/*
+
+	public   String code_section;	//码段
+	public   String expiry_date;	//失效日期
+	public   String auth;       	//证书权限
+	public   String append_data; 	//随机附加数据
+
+
+	public   String gen_id;          //证书ID
+	public   String gen_sn;          //证书编号
+	public   String gen_src;         //证书来源
+	public   String gen_time;        //时间
+	public   String gen_way;         //生成方式
+	public   String gen_ip;			 //生成ID
+*/
+JNIEXPORT jobject JNICALL native_getRecogStatus
+  (JNIEnv *input_env, jobject obj)
+{
+	INFOR("native_getRecogStatus");
+	//获取JAVA中的实例类
+	 jclass objectClass = (input_env)->FindClass("net/telesing/tsdk/tlib/Recog_status");
+
+	 //获取类中每一个变量的定义
+	jfieldID j_ss			 = input_env->GetFieldID(objectClass, "ss", "D");
+	jfieldID j_blank_buffer  = input_env->GetFieldID(objectClass, "blankBuffer", "D");
+	jfieldID j_recog_stat    = input_env->GetFieldID(objectClass, "recogStat", "I");
+
+	//修改状态值准备JAVA获取
+	//状态赋值
+	recog_status.output_recog_state  = 100;
+	recog_status.output_blank_buffer = 0.2;
+	recog_status.output_ss           = 0.99;
+
+	//新建一个对象用于返回到Java中
+	jobject status = input_env->AllocObject(objectClass);
+
+	//给每一个实例的变量
+	input_env -> SetDoubleField(status, j_ss,recog_status.output_ss  );
+	input_env -> SetDoubleField(status, j_blank_buffer,recog_status.output_blank_buffer);
+	input_env -> SetIntField(status, j_recog_stat,recog_status.output_recog_state );
+
+	return status;
+}
+//!指定要注册的类的名称n
+//!命名规则
+#define JNIREG_CLASS "net/telesing/tsdk/tlib/Acomms"
+
+//
+//
+//
+//
+//
+//
+static JNINativeMethod gMethods[] = {
+	{ "getRecogStatus", "()Lnet/telesing/tsdk/tlib/Recog_status;", (void*)native_getRecogStatus },
+};
+
+//***************************************************************************
+//函数名称：registerNativeMethods
+//函数功能：注册单个本地方法到虚拟机中
+//输入参数：方法数组指正
+//输出参数：
+//备	         注 ：
+//			clazz = env->FindClass(env, className); C中间使用的方法
+//			clazz = env->FindClass(className);//C++使用的方法
+//			if (env->RegisterNatives(env, clazz, gMethods, numMethods) < 0) {
+//			if (env->RegisterNatives( clazz, gMethods, numMethods) < 0) {
+//**************************************************************************
+
+static int registerNativeMethods(JNIEnv* env,
+								 const char* className,
+								 JNINativeMethod* gMethods,
+								 int numMethods)
+{
+	jclass clazz;
+
+	clazz = env->FindClass(className);//C++使用的方法
+	if (clazz == NULL) {
+		return JNI_FALSE;
+	}
+	if (env->RegisterNatives(clazz, gMethods, numMethods) < 0) {
+		return JNI_FALSE;
+	}
+
+	return JNI_TRUE;
+}
+//***************************************************************************
+//函数名称：
+//函数功能：根据本地函数列表指正,注册函数到VM中
+//输入参数：JVM虚拟机
+//输出参数：
+//备	         注 ：
+//
+// 			if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_4) != JNI_OK)
+//			if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK)
+//**************************************************************************
+static int registerNatives(JNIEnv* env)
+{
+    if (!registerNativeMethods(env, JNIREG_CLASS, gMethods,
+        sizeof(gMethods) / sizeof(gMethods[0])))
+        return JNI_FALSE;
+
+    return JNI_TRUE;
+}
+//***************************************************************************
+//函数名称：
+//函数功能：
+//输入参数：
+//输出参数：
+//备	         注 ：
+//			!自动注册本地函数
+//			!保存Java虚拟机参数共多线程调用
+//			!保存JAVA线程对象供多线程调用
+//			!保存回调函数的ID为全局变量
+//			!申请native使用的空间
+// 			if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_4) != JNI_OK)
+//			if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK)
+//**************************************************************************
+
+ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
+ {
+#ifndef RELESAE
+	 INFOR("AUTO REGEDIT FUNCTIONS TO JAVAVM");
+#endif
+	JNIEnv* env = NULL;
+
+	jint result = -1;
+	if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK) {
+		INFOR("GetEnv failed");
+		return -1;
+	}
+	assert(env != NULL);
+	//注册
+	if (!registerNatives(env)) {
+		return -1;
+	}
+	result = JNI_VERSION_1_4;
+
+	return result;
+
+ }
+ //***************************************************************************
+ //函数名称：JNI_OnUnload
+ //函数功能：虚拟机清理函数
+ //输入参数：
+ //输出参数：
+ //备	 注 ：
+ //
+ //			1.清理申请的全局引用空间
+ //
+ //**************************************************************************
+ JNIEXPORT void JNICALL JNI_OnUnload(JavaVM* vm, void* reserved)
+ {
+	 __android_log_print(ANDROID_LOG_INFO, "NATIVE:","JNI_OnUnload");
+ }
+#ifdef __cplusplus
+}
+#endif
