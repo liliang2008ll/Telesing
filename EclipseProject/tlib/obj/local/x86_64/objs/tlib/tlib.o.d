@@ -24,9 +24,17 @@ obj/local/x86_64/objs/tlib/tlib.o: jni/tlib.cpp \
  E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/xlocale.h \
  E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/jni.h \
  E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/assert.h \
- jni/net_telesing_tsdk_tlib_Acomms.h jni/tlib.h \
- E:/ndk/android-ndk-r10/sources/cxx-stl/gnu-libstdc++/4.9/include/string \
- E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/android/log.h
+ jni/tlib.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/android/log.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/time.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/sys/time.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/linux/time.h \
+ jni/.\core\dem.h jni/.\core\core.h jni/tlib.h jni/.\core\rsa_use.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/stdlib.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/alloca.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/strings.h \
+ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/memory.h \
+ jni/.\core\big_int.h jni/.\core\time_diff.h jni/.\core\mod.h
 
 E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/stdio.h:
 
@@ -78,10 +86,34 @@ E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/jni.h:
 
 E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/assert.h:
 
-jni/net_telesing_tsdk_tlib_Acomms.h:
+jni/tlib.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/android/log.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/time.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/sys/time.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/linux/time.h:
+
+jni/.\core\dem.h:
+
+jni/.\core\core.h:
 
 jni/tlib.h:
 
-E:/ndk/android-ndk-r10/sources/cxx-stl/gnu-libstdc++/4.9/include/string:
+jni/.\core\rsa_use.h:
 
-E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/android/log.h:
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/stdlib.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/alloca.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/strings.h:
+
+E:/ndk/android-ndk-r10/platforms/android-21/arch-x86_64/usr/include/memory.h:
+
+jni/.\core\big_int.h:
+
+jni/.\core\time_diff.h:
+
+jni/.\core\mod.h:

@@ -1,4 +1,4 @@
-##############################################################################################################################################
+ ##############################################################################################################################################
 ##Application.mk目的是描述在你的应用程序中所需要的模块(即静态库或动态库)。
 #Application.mk文件通常被放置在 $PROJECT/jni/Application.mk下，$PROJECT指的是您的项目。
 #
@@ -49,7 +49,6 @@
 #                                                   APP_STL := stlport_shared       -->     shared STLport library
 #                                                   APP_STL := system               -->     default C++ runtime library
 ##############################################################################################################################################
-# APP_OPTIM := debug
 #APP_STL := gnustl_static
 #APP_CPPFLAGS := -frtti -fexceptions #C++异常支持
 #LOCAL_CPPFLAGS :=-pthread  -fpermissive -frtti -fexceptions
@@ -59,6 +58,11 @@
 #APP_PLATFORM := android-8
 APP_STL      :=   gnustl_static
 APP_CPPFLAGS :=   -frtti -fexceptions
-APP_ABI      :=   all
-APP_PLATFORM := android-8
+APP_ABI      :=   armeabi
+APP_PLATFORM :=   android-8
+
+
+
+
+
 

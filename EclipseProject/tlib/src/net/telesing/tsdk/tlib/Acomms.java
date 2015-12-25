@@ -27,81 +27,171 @@ import net.telesing.tsdk.tlib.RecogStatus;
 import net.telesing.tsdk.tlib.RecogCfg;
 import net.telesing.tsdk.tlib.CerInfor;
 
-
 //!声波通信算法接口
 public class Acomms {
-	
 
-	
-	//!根据输入的证书结构体加密
-	public native String encryptCer(CerInfor cer,int cerLen); //ok
-	
-	///!根据输入的证书结构体解密
-	public native CerInfor decryptCer(String cer,int cerLen);
-	
-	//!绑定证书
-	 public native int bindCer(CerInfor cer,int cerLen);
-	 
-	//!消除证书
-	 public native int unbindCer(CerInfor cer,int cerLen);
-	 
-	//!检查证书
-	 public native int isBindCer(CerInfor cer,int cerLen);
-	 
-	//!检查证书内容
-	 public native int getSectionsStatus(CerInfor section);
-	 
-	//!生成包含特定内容的波形文件
-	 public native short[] genrWave(String section,String data);
-	 
-	//初始化解析
-	 public native int initRecog();
-	 
-	//!开始解析
-	 public native int startRecog(RecogCfg cfg);
-	 
-	//!暂停解析
-	 public native int pauseRecog();
-	 
-	//!重启解析
-	 public native int restartRecog();
-	 
-	//!停止解析
-	 public native int stopRecog();
-	 
-	//!写入带解析的音频文件
-	 public native int writeRecog(short[] waves,int waveLen);
-	 
-	//!设置解析参数
-	 public native int setRecogConfig(RecogCfg cfg);
-	 
-	//!获取解析参数
-	 public native RecogCfg getRecogConfig();
-	 
-	 //!获取解析参数配置信息
-	 //!本地静态函数
-	 public native  RecogStatus getRecogStatus();  
-	 
-	 
-//!NDK回调函数
-	 //参数更新
-	 public void recogResult(String section,String data,int times)
-	 {
-		 Log.e("[APP]:","回调recogResult() success");
-		 Log.e("[APP]:","section  = "+section);
-		 Log.e("[APP]:","data     = "+data);
-		 Log.e("[APP]:","times    = "+times);		 
-	 }
+	// !根据输入的证书结构体加密
+	public native String encryptCer(CerInfor cer); // ok
 
-	 
-	 //!加载tlib库函数
-	 static {
-		     try{
-		         Log.e("[APP]:","加载解析库函数成功success");
-		         System.loadLibrary("tlib");
-		     }catch (Exception e){
-		         Log.e("system.loadlibrary:",e.getMessage());
-		     }
-	
-	 }
+	/**
+	 * 解密证书
+	 * 
+	 * @param encCer
+	 *            密文证书
+	 * @param cerLen
+	 *            密文证书长度
+	 * @return
+	 */
+	public native CerInfor decryptCer(String encCer);
+
+	/**
+	 * 绑定证书
+	 * 
+	 * @param encCer
+	 *            证书内容
+	 * @param cerLen
+	 *            证书长度
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int bindCer(String encCer);
+
+	/**
+	 * 解绑证书
+	 * 
+	 * @param encCer
+	 *            密文证书
+	 * @param cerLen
+	 *            密文证书长度
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int unbindCer(String encCer);
+
+	/**
+	 * 验证证书是否绑定
+	 * 
+	 * @param encCer
+	 *            密文证书
+	 * @param cerLen
+	 *            密文证书长度
+	 * @return 0，未绑定； 1，已绑定
+	 */
+	public native int isBindCer(String encCer);
+
+	/**
+	 * 获得号段证书的绑定状态
+	 * 
+	 * @param section
+	 *            号段
+	 * @return 0，没有绑定； 1，绑定生成； 2，绑定识别； 3，全部绑定；
+	 */
+	public native int checkSectionsBindState(String section);
+
+	/**
+	 * 生成Wave 文件
+	 * 
+	 * @param section
+	 *            号段名称
+	 * @param data
+	 *            阙音码内容
+	 * @return wave 流
+	 */
+	public native short[] genrWave(String section, String data);
+
+	/**
+	 * 开始解调
+	 * 
+	 * @param cfg
+	 *            RecogCfg 参数
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int startRecog(RecogCfg cfg);
+
+	/**
+	 * 暂停解调
+	 * 
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int pauseRecog();
+
+	/**
+	 * 恢复解调
+	 * 
+	 * @return
+	 */
+	public native int resumeRecog();
+
+	/**
+	 * 停止解调
+	 * 
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int stopRecog();
+
+	/**
+	 * 向缓冲区写入数据
+	 * 
+	 * @param waves
+	 *            音频数据
+	 * @param waveLen
+	 *            数据长度
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int writeRecog(short[] waves);
+
+	/**
+	 * 设置参数
+	 * 
+	 * @param cfg
+	 * @return 0，成功； 非0，错误码
+	 */
+	public native int setRecogConfig(RecogCfg cfg);
+
+	/**
+	 * 获取设置参数
+	 * 
+	 * @return Recog_cfg
+	 */
+	public native RecogCfg getRecogConfig();
+
+	/**
+	 * 获取解调状态
+	 * 
+	 * @return Recog_status
+	 */
+	public native RecogStatus getRecogStatus();
+
+	/**
+	 * 回调函数
+	 * 
+	 * @param section
+	 *            码段
+	 * @param data
+	 *            阙音码内容
+	 * @param times
+	 *            解析时间
+	 */
+	public void recogResult(String section, String data, int duration) {
+
+		Log.e("[APP]:", "证书类型  = " + section);
+		Log.e("[APP]:", "消息编号  = " + data);
+		Log.e("[APP]:", "花费时间  = " + duration);
+
+		// updata
+		Log.e("[APP]:", "读取声码通信算法状态");
+		RecogStatus status = getRecogStatus();
+		Log.e("[APP]:", "缓 冲    区 = " + status.blankBuffer);
+		Log.e("[APP]:", "相  似   度 = " + status.ss);
+		Log.e("[APP]:", "线程状态 = " + status.recogStat);
+	}
+
+	// !加载tlib库函数
+	static {
+		try {
+			Log.e("[APP]:", "加载解析库函数成功success");
+			System.loadLibrary("tlib");
+		} catch (Exception e) {
+			Log.e("system.loadlibrary:", e.getMessage());
+		}
+
+	}
 }

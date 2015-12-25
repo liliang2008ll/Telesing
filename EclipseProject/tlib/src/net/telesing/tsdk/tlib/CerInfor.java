@@ -16,34 +16,36 @@
  *  说         明:
  ******************************************************************/
 package net.telesing.tsdk.tlib;
-import java.io.Serializable;
-public class CerInfor implements Serializable {	
 
-/**
+import java.io.Serializable;
+
+public class CerInfor implements Serializable {
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8732543735745997438L;
-	
-//有效字段
-	public   String section;		//码段
-	public   String expiration;		//失效日期
-	public   String authority;       	//证书权限	
-	
-//附加字段
-	public   String ID;            		 //证书ID
-	public   String orgID;           	 //证书编号
-	public   String sectSrc;         	 //证书来源
-	public   String genrTime;        	 //时间
-	public   String genrType;       	 //生成方式 --人工或则程序生成?
-	
-	public   String genrIp;			 	//生成ID
-	
-	public  String voidString; 			//占位符号	
-//调试信息
-	public   int    cerLen;          	//字节长度
-	//随机附加数据	
-	private  String appendData; 	
-	
+
+	// 有效字段
+	public String section; // 码段
+	public String expiration; // 失效日期
+	public String authority; // 证书权限
+
+	// 附加字段
+	public String ID; // 证书ID
+	public String orgID; // 证书编号
+	public String genrTime; // 时间
+	public String genrType; // 生成方式 --人工或则程序生成?
+	public String genrIp; // 生成ID
+	public String sectSrc; // 证书来源
+
+	// 调试信息
+	public String voidString; // 占位符号
+
+	public int cerLen; // 字节长度
+	// 随机附加数据
+	private String appendData;
+
 	public String getSection() {
 		return section;
 	}
@@ -136,7 +138,4 @@ public class CerInfor implements Serializable {
 		return serialVersionUID;
 	}
 
-
-
-	
 }

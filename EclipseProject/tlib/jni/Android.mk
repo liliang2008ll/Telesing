@@ -1,5 +1,5 @@
 # Copyright (C) 2009 The Android Open Source Project
-#
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -10,8 +10,8 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# limi tations under the License.    
+#    
 # LOCAL_PATH:  这个变量用于给出当前文件的路径。 
 #（1）LOCAL_PATH:  这个变量用于给出当前文件的路径。 
 #    必须在 Android.mk 的开头定义，可以这样使用：LOCAL_PATH := $(call my-dir) 
@@ -32,19 +32,19 @@
 # （6）LOCAL_SHARED_LIBRARIES:  表示模块在运行时要依赖的共享库（动态库），在链接时就需要，以便在生成文件时嵌入其相应的信息。 
 #      注意：它不会附加列出的模块到编译图，也就是仍然需要在Application.mk 中把它们添加到程序要求的模块中。 
 #  （7）LOCAL_LDLIBS:  编译模块时要使用的附加的链接器选项。这对于使用‘-l’前缀传递指定库的名字是有用的。 
-#      例如，LOCAL_LDLIBS := -lz表示告诉链接器生成的模块要在加载时刻链接到/system/lib/libz.so 
+#      例如，LOCAL_LDLIBS := -lz表示告诉链接器生成的模块要在  加载时刻链接到/system/lib/libz.so 
 #       可查看 docs/STABLE-APIS.TXT 获取使用 NDK发行版能链接到的开放的系统库列表。 
 #  (8)LOCAL_MODULE_PATH 和 LOCAL_UNSTRIPPED_PATH 
 #      在 Android.mk 文件中， 还可以用LOCAL_MODULE_PATH 和LOCAL_UNSTRIPPED_PATH指定最后的目标安装路径. 
 #      不同的文件系统路径用以下的宏进行选择： 
 #       TARGET_ROOT_OUT：表示根文件系统。 
 #      TARGET_OUT：表示 system文件系统。 
-#      TARGET_OUT_DATA：表示 data文件系统。 
+#      TARGET_OUT_DATA：表示 data文件系统。             
 #      用法如：LOCAL_MODULE_PATH :=$(TARGET_ROOT_OUT) 
 #    至于LOCAL_MODULE_PATH 和LOCAL_UNSTRIPPED_PATH的区别，暂时还不清楚。 
 # （9）LOCAL_JNI_SHARED_LIBRARIES：定义了要包含的so库文件的名字，如果程序没有采用jni，不需要 
 #      LOCAL_JNI_SHARED_LIBRARIES := libxxx 这样在编译的时候，NDK自动会把这个libxxx打包进apk； 放在你的apk/lib/目录下 
-#编译静态库  
+#编译静态库                         
 #LOCAL_PATH := $(call my-dir)  
 #include $(CLEAR_VARS)  
 #LOCAL_MODULE = libhellos  
@@ -67,7 +67,7 @@
 #LOCAL_COPY_HEADERS_TO := libhellod  
 #LOCAL_COPY_HEADERS := hellod.h  
 #include $(BUILD_SHARED_LIBRARY)  
-  
+                 
 #使用静态库  
 #LOCAL_PATH := $(call my-dir)  
 #include $(CLEAR_VARS)  
@@ -92,13 +92,79 @@
 #LOCAL_C_INCLUDES := $(INCLUDES)  
 #include $(BUILD_EXECUTABLE)  
 
-LOCAL_PATH := $(call my-dir)
 
+#include $(CLEAR_VARS)
+#
+##外部模块名
+#LOCAL_MODULE:= libcrypto 
+##模块名称 外部模块
+#LOCAL_SRC_FILES:=C://Users/liang/Desktop/asc_a/jni/libcrypto.so
+##头文件路径
+#LOCAL_EXPORT_C_INCLUDES :=C://Users/liang/Desktop/asc_a/jni/core/openssl
+##/链接动态库so，并libcrypto名必须是LOCAL_MODULE 指定的名称，并且会自动复制到本so库的目录
+#LOCAL_SHARED_LIBRARIES +=libcrypto ;
+#include $(PREBUILT_SHARED_LIBRARY) 
+#
+#include $(CLEAR_VARS)
+##外部模块名
+#LOCAL_MODULE:= libss
+##模块名称---->外部模块
+#LOCAL_SRC_FILES:=C://Users/liang/Desktop/asc_a/jni/libssl.so
+##头文件路径
+#LOCAL_EXPORT_C_INCLUDES :=C://Users/liang/Desktop/asc_a/jni/core/openssl
+#
+##/链接动态库so，并libcrypto名必须是LOCAL_MODULE 指定的名称，并且会自动复制到本so库的目录
+#LOCAL_SHARED_LIBRARIES += libssl;
+#
+#include $(PREBUILT_SHARED_LIBRARY) 
+LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-#库文件名称
+
+
+#库模块名称-------> 编译指定的模块
 LOCAL_MODULE    :=    tlib
-LOCAL_SRC_FILES :=   tlib.cpp
-LOCAL_LDLIBS    :=  -L$(SYSROOT)/usr/lib -llog
+LOCAL_SRC_FILES :=   tlib.cpp\
+					.\core\core.cpp\
+					.\core\dem.cpp\
+					.\core\bch.cpp\
+					.\core\buffer_c.cpp\
+					.\core\corr_helper.cpp\
+					.\core\fft/Complexs.cpp \
+					.\core\fft/IdxGen.cpp \
+					.\core\fft/Expression.cpp \
+					.\core\fft/ExpGen.cpp \
+	  				.\core\fft/Transformer.cpp \
+	 				.\core\big_int.cpp \
+					.\core\rsa_use.cpp \
+					.\core\mod.cpp \
+					.\core\time_diff.cpp
+	
+		
+ 	 						
+LOCAL_LDLIBS    :=  -L$(SYSROOT)/usr/lib -llog  
+
+##链接动态库so，并libcrypto_dynamic名必须是LOCAL_MODULE 指定的名称，并且会自动复制到本so库的目录
+
+
+
+#LOCAL_SHARED_LIBRARIES +=libcrypto
+#LOCAL_SHARED_LIBRARIES +=libss
+
+
 include $(BUILD_SHARED_LIBRARY)
 #include $(BUILD_EXECUTABLE)  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 

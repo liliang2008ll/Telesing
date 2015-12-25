@@ -22,66 +22,71 @@ import java.io.Serializable;
 import android.R.integer;
 
 public class RecogCfg implements Serializable {
-	
+
 	private static final long serialVersionUID = -5324620371099616623L;
-	
-	public double[] start_feq;	//启始频率
-	public double[] end_feq;	//截止频率
-	public int 		gap   ;		//跳转间隙
-	public double 	st ;		//相似度
-	public int 		fft_points; //FFT点数
-	public int 		fft_chains;	//FFT信道数
-	public int 		fft_gap;	//同步失败后跳转间隙
-	
-//set,get方法
-	public double[] getStart_feq() {
-		return start_feq;
+
+	public int[] startFeq; // 启始频率
+	public int[] endFeq; // 截止频率
+	public int gap; // 跳转间隙
+	public double st; // 相似度
+	public int fftPoints; // FFT点数
+	public int fftChains; // FFT信道数
+	public int bufferLen;
+
+	public int[] getStartFeq() {
+		return startFeq;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+
+	public void setStartFeq(int[] startFeq) {
+		this.startFeq = startFeq;
 	}
-	public void setStart_feq(double[] start_feq) {
-		this.start_feq = start_feq;
+
+	public int[] getEndFeq() {
+		return endFeq;
 	}
-	public double[] getEnd_feq() {
-		return end_feq;
+
+	public void setEndFeq(int[] endFeq) {
+		this.endFeq = endFeq;
 	}
-	public void setEnd_feq(double[] end_feq) {
-		this.end_feq = end_feq;
-	}
+
 	public int getGap() {
 		return gap;
 	}
+
 	public void setGap(int gap) {
 		this.gap = gap;
 	}
+
 	public double getSt() {
 		return st;
 	}
+
 	public void setSt(double st) {
 		this.st = st;
 	}
-	public int getFft_points() {
-		return fft_points;
+
+	public int getFftPoints() {
+		return fftPoints;
 	}
-	public void setFft_points(int fft_points) {
-		this.fft_points = fft_points;
+
+	public void setFftPoints(int fftPoints) {
+		this.fftPoints = fftPoints;
 	}
-	public int getFft_chains() {
-		return fft_chains;
+
+	public int getFftChains() {
+		return fftChains;
 	}
-	public void setFft_chains(int fft_chains) {
-		this.fft_chains = fft_chains;
+
+	public void setFftChains(int fftChains) {
+		this.fftChains = fftChains;
 	}
-	public int getFft_gap() {
-		return fft_gap;
+
+	public int getBufferLen() {
+		return bufferLen;
 	}
-	public void setFft_gap(int fft_gap) {
-		this.fft_gap = fft_gap;
+
+	public void setBufferLen(int bufferLen) {
+		this.bufferLen = bufferLen;
 	}
-	
-	
-	
-	
 
 }

@@ -19,9 +19,19 @@ obj/local/armeabi/objs/tlib/tlib.o: jni/tlib.cpp \
  E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/malloc.h \
  E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/jni.h \
  E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/assert.h \
- jni/net_telesing_tsdk_tlib_Acomms.h jni/tlib.h \
- E:/ndk/android-ndk-r10/sources/cxx-stl/gnu-libstdc++/4.8/include/string \
- E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/android/log.h
+ jni/tlib.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/android/log.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/time.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/sys/time.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/linux/time.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/asm/siginfo.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/asm-generic/siginfo.h \
+ jni/.\core\dem.h jni/.\core\core.h jni/tlib.h jni/.\core\rsa_use.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/stdlib.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/alloca.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/strings.h \
+ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/memory.h \
+ jni/.\core\big_int.h jni/.\core\time_diff.h jni/.\core\mod.h
 
 E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/stdio.h:
 
@@ -63,10 +73,38 @@ E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/jni.h:
 
 E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/assert.h:
 
-jni/net_telesing_tsdk_tlib_Acomms.h:
+jni/tlib.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/android/log.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/time.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/sys/time.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/linux/time.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/asm/siginfo.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/asm-generic/siginfo.h:
+
+jni/.\core\dem.h:
+
+jni/.\core\core.h:
 
 jni/tlib.h:
 
-E:/ndk/android-ndk-r10/sources/cxx-stl/gnu-libstdc++/4.8/include/string:
+jni/.\core\rsa_use.h:
 
-E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/android/log.h:
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/stdlib.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/alloca.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/strings.h:
+
+E:/ndk/android-ndk-r10/platforms/android-8/arch-arm/usr/include/memory.h:
+
+jni/.\core\big_int.h:
+
+jni/.\core\time_diff.h:
+
+jni/.\core\mod.h:

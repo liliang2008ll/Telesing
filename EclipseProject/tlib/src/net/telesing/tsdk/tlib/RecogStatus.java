@@ -20,33 +20,35 @@ package net.telesing.tsdk.tlib;
 import java.io.Serializable;
 
 public class RecogStatus implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	public double 		ss;				//相似度
-	public double 	    blankBuffer;	//缓冲区空白区域大小
-	public int			recogStat ;	//通信算法状态,运行还是停止
-	
-	
+
+	public double ss; // 相似度
+	public double blankBuffer; // 缓冲区空白区域大小
+	public int recogStat; // 通信算法状态,运行还是停止
+
 	public double getSs() {
 		return ss;
 	}
+
 	public void setSs(double ss) {
 		this.ss = ss;
 	}
+
 	public double getBlank_buffer() {
 		return blankBuffer;
 	}
+
 	public void setBlank_buffer(int blank_buffer) {
 		this.blankBuffer = blank_buffer;
 	}
+
 	public int getRecog_stat() {
 		return recogStat;
 	}
+
 	public void setRecog_stat(int recog_stat) {
 		this.recogStat = recog_stat;
 	}
-	
-	
 
 }
