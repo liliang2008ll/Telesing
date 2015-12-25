@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Test Data">
+      <UniqueIdentifier>{accf0bc1-1e23-4bc3-bfa4-d25bd7db8b56}</UniqueIdentifier>
+      <Extensions>.dat</Extensions>
+    </Filter>
+    <Filter Include="Source Code">
+      <UniqueIdentifier>{fdd08d6b-3f54-4b01-929b-a4418e898a0f}</UniqueIdentifier>
+      <Extensions>.cpp;.h</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="3desval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="3wayval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="camellia.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="cast128v.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="cast256v.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="descert.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="dh1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="dh2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="diamond.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="dsa1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="dsa1024b.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="dsa512.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="elgc1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="esig1023.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="esig1536.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="esig2046.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="gostval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="havalcer.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="ideaval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="luc1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="luc2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="lucc1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="lucc512.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="lucd1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="lucd512.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="lucs1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="lucs512.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="marsval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="mqv1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="mqv2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="nr1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="nr2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rabi1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rabi2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rc2val.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rc5val.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rc6val.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rijndael.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rsa1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rsa2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rsa400pb.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rsa400pv.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rsa512a.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rw1024.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="rw2048.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="saferval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="serpentv.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="shacal2v.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="sharkval.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="skipjack.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="squareva.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="twofishv.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="usage.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="xtrdh171.dat">
+      <Filter>Test Data</Filter>
+    </None>
+    <None Include="xtrdh342.dat">
+      <Filter>Test Data</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="adhoc.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="bench.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="bench2.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="datatest.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="dlltest.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="fipsalgt.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="regtest.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="validat1.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="validat2.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+    <ClCompile Include="validat3.cpp">
+      <Filter>Source Code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bench.h">
+      <Filter>Source Code</Filter>
+    </ClInclude>
+    <ClInclude Include="factory.h">
+      <Filter>Source Code</Filter>
+    </ClInclude>
+    <ClInclude Include="validate.h">
+      <Filter>Source Code</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

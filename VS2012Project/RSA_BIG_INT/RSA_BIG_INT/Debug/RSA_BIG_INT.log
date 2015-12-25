@@ -1,0 +1,16 @@
+﻿生成启动时间为 2015/12/25 18:13:42。
+     1>项目“E:\workspace\GitManager\Telesing\VS2012Project\RSA_BIG_INT\RSA_BIG_INT\RSA_BIG_INT.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\Program Files\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\RSA_BIG_INT.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt RSA_BIG_INT.cpp
+         RSA_BIG_INT.cpp
+       Link:
+         E:\Program Files\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\workspace\GitManager\Telesing\VS2012Project\RSA_BIG_INT\Debug\RSA_BIG_INT.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\workspace\GitManager\Telesing\VS2012Project\RSA_BIG_INT\Debug\RSA_BIG_INT.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\workspace\GitManager\Telesing\VS2012Project\RSA_BIG_INT\Debug\RSA_BIG_INT.lib" /MACHINE:X86 Debug\big_int.obj
+         Debug\RSA_BIG_INT.obj
+         Debug\rsa_use.obj
+         Debug\stdafx.obj
+         RSA_BIG_INT.vcxproj -> E:\workspace\GitManager\Telesing\VS2012Project\RSA_BIG_INT\Debug\RSA_BIG_INT.exe
+     1>已完成生成项目“E:\workspace\GitManager\Telesing\VS2012Project\RSA_BIG_INT\RSA_BIG_INT\RSA_BIG_INT.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.39
